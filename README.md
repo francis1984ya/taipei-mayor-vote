@@ -12,3 +12,6 @@
 2. Firestore「規則」：貼上 `firestore.rules` 的內容並發佈
 3. Authentication → 登入方式 → 啟用「匿名」
 4. GitHub Pages：Settings → Pages → Deploy from a branch → `main` / root
+
+## 主辦人後台
+`admin.html` 是只給主辦人看的即時票數頁面（`https://<帳號>.github.io/taipei-mayor-vote/admin.html`）。進入時輸入認證碼，認證碼寫在 Firebase 後台的資料庫規則（`firestore.rules` 裡的 `CHANGE_ME_PIN` 要換成你自己的，**不要把真正的認證碼提交到公開儲存庫**）。

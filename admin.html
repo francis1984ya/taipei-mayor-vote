@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>主辦人後台 · 即時投票狀況</title>
+<style>
+:root{--g:#19e68c;--b:#3d8bff;--bg:#06070d;--ink:#eef2ff;--mut:#8b93b5;--gold:#ffd24a}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:radial-gradient(60% 60% at 0% 20%,rgba(25,230,140,.15),transparent 70%),radial-gradient(60% 60% at 100% 20%,rgba(61,139,255,.17),transparent 70%),var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;min-height:100vh}
+main{max-width:900px;margin:0 auto;padding:22px 14px 60px}
+h1{font-size:clamp(20px,5vw,30px);font-weight:900}
+.sub{color:var(--mut);font-size:13px;margin-top:4px;line-height:1.6}
+.card{margin-top:18px;padding:18px 16px;border-radius:18px;background:rgba(10,12,26,.78);border:1px solid rgba(255,255,255,.14)}
+button{font:inherit;font-weight:800;cursor:pointer;border:0;border-radius:12px;padding:12px 18px;background:linear-gradient(180deg,#ffe27a,#ffd24a);color:#2a1d00}
+input{font:inherit;font-size:18px;font-weight:700;text-align:center;color:#fff;background:#0a0d1d;border:2px solid rgba(255,255,255,.25);border-radius:12px;padding:10px 14px;outline:0;width:min(220px,60%)}
+input:focus{border-color:var(--gold)}
+button.ghost{background:transparent;color:#cfd6ff;border:1px solid rgba(255,255,255,.28);padding:8px 12px;font-size:13px}
+.err{color:#ff7b8f;font-size:13px;margin-top:10px;min-height:18px;line-height:1.6}
+.bar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;font-size:13px;color:var(--mut)}
+.live{display:inline-block;width:8px;height:8px;border-radius:50%;background:#19e68c;box-shadow:0 0 10px #19e68c;margin-right:6px;animation:b 1.2s infinite}
+@keyframes b{50%{opacity:.25}}
+.big{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+.who{padding:16px 10px;border-radius:16px;text-align:center;border:1px solid rgba(var(--cr),.55);background:linear-gradient(180deg,rgba(var(--cr),.16),rgba(255,255,255,.02))}
+.who.shen{--cr:25,230,140}.who.chiang{--cr:61,139,255}
+.who h2{font-size:clamp(18px,5vw,26px);font-weight:900;color:rgb(var(--cr))}
+.who .n{font-size:clamp(44px,13vw,84px);font-weight:900;line-height:1.1;text-shadow:0 0 22px rgba(var(--cr),.9)}
+.who .p{font-size:clamp(16px,4.5vw,24px);font-weight:800;color:#d7ddff}
+.tug{margin-top:14px;display:flex;height:22px;border-radius:99px;overflow:hidden;background:#0d1020;box-shadow:inset 0 0 0 2px rgba(255,255,255,.1)}
+.tug i{display:block;height:100%;transition:width .8s}
+.tug .g{background:linear-gradient(90deg,#0a9a5c,#19e68c)}.tug .b{background:linear-gradient(270deg,#1c4fd1,#3d8bff)}
+.lead{margin-top:12px;text-align:center;font-weight:900;font-size:clamp(15px,4vw,20px)}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+.col{--cr:25,230,140;padding:12px 10px;border-radius:16px;background:rgba(10,12,26,.78);border:1px solid rgba(var(--cr),.4);min-width:0}
+.col.chiang{--cr:61,139,255}
+.col h3{font-size:15px;font-weight:900;color:rgb(var(--cr));margin-bottom:8px;display:flex;justify-content:space-between}
+.col ul{list-style:none;display:flex;flex-direction:column;gap:6px;max-height:560px;overflow-y:auto}
+.col li{display:flex;justify-content:space-between;gap:8px;padding:8px 10px;border-radius:10px;background:rgba(var(--cr),.12);border-left:3px solid rgb(var(--cr));font-size:14px}
+.col li span{font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+.col li time{font-size:11px;color:var(--mut);flex:none;align-self:center}
+.empty{color:var(--mut);font-size:13px;text-align:center;padding:12px 0}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<main>
+  <h1>🔒 主辦人後台・即時投票狀況</h1>
+  <p class="sub">這一頁只有主辦人能看。請不要把這個網址的內容截圖或轉傳，公布時間之前結果不對外公開。</p>
+
+  <section class="card" id="gate">
+    <p style="line-height:1.7">請輸入認證碼。沒有認證碼的人，即使打開這個網址也看不到任何投票資料。</p>
+    <div class="row"><input id="pin" type="password" inputmode="numeric" autocomplete="off" placeholder="認證碼" maxlength="20"><button id="go">進入</button></div>
+    <div class="err" id="err"></div>
+  </section>
+
+  <section id="dash" hidden>
+    <div class="card">
+      <div class="bar"><span><i class="live"></i>即時更新中</span><span id="upd"></span><button class="ghost" id="logout">登出</button></div>
+      <div class="big">
+        <div class="who shen"><h2>沈伯洋</h2><div class="n" id="nG">0</div><div class="p" id="pG">0%</div></div>
+        <div class="who chiang"><h2>蔣萬安</h2><div class="n" id="nB">0</div><div class="p" id="pB">0%</div></div>
+      </div>
+      <div class="tug"><i class="g" id="fG" style="width:50%"></i><i class="b" id="fB" style="width:50%"></i></div>
+      <div class="lead" id="lead"></div>
+      <div class="row"><button class="ghost" id="copy">複製結果文字（方便公布）</button><span class="sub" id="copied"></span></div>
+    </div>
+    <div class="cols">
+      <div class="col shen"><h3><span>預測 沈伯洋 當選</span><b id="cG">0</b></h3><ul id="listG"></ul></div>
+      <div class="col chiang"><h3><span>預測 蔣萬安 當選</span><b id="cB">0</b></h3><ul id="listB"></ul></div>
+    </div>
+    <div class="err" id="err2"></div>
+  </section>
+</main>
+
+<script type="module">
+import {initializeApp} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import {getAuth,signInAnonymously,signOut} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import {getFirestore,collection,onSnapshot,doc,setDoc} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import FB_CONFIG from "./firebase-config.js";
+const $=s=>document.querySelector(s);
+/* 用獨立的 app 名稱，避免影響同一個瀏覽器在投票頁的匿名身分 */
+const app=initializeApp(FB_CONFIG,'admin'),auth=getAuth(app),fs=getFirestore(app);
+const NAME={shen:'沈伯洋',chiang:'蔣萬安'};
+let unsub=null,votes=[],uid=null,tried=false;
+const hhmm=ts=>ts?new Date(ts).toLocaleString('zh-TW',{timeZone:'Asia/Taipei',month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false}):'';
+function fill(ul,arr){ul.textContent='';
+  if(!arr.length){const e=document.createElement('div');e.className='empty';e.textContent='目前沒有人';ul.appendChild(e);return}
+  arr.forEach(v=>{const li=document.createElement('li'),s=document.createElement('span'),t=document.createElement('time');s.textContent=v.name;t.textContent=hhmm(v.ts);li.append(s,t);ul.appendChild(li)})}
+function render(){
+  const g=votes.filter(v=>v.choice==='shen'),b=votes.filter(v=>v.choice==='chiang'),n=votes.length;
+  $('#nG').textContent=g.length;$('#nB').textContent=b.length;
+  const pg=n?g.length/n*100:0,pb=n?b.length/n*100:0;
+  $('#pG').textContent=pg.toFixed(1)+'%';$('#pB').textContent=pb.toFixed(1)+'%';
+  $('#fG').style.width=(n?pg:50)+'%';$('#fB').style.width=(n?pb:50)+'%';
+  const d=g.length-b.length;
+  $('#lead').textContent=!n?'還沒有人投票':d===0?`共 ${n} 人・雙方平手`:`共 ${n} 人・${d>0?NAME.shen:NAME.chiang} 領先 ${Math.abs(d)} 票`;
+  $('#cG').textContent=g.length;$('#cB').textContent=b.length;fill($('#listG'),g);fill($('#listB'),b);
+  $('#upd').textContent='最後更新 '+new Date().toLocaleTimeString('zh-TW',{timeZone:'Asia/Taipei',hour12:false});
+}
+function summary(){
+  const g=votes.filter(v=>v.choice==='shen'),b=votes.filter(v=>v.choice==='chiang'),n=votes.length;
+  const pc=x=>n?(x/n*100).toFixed(1):'0.0';
+  return `台北市長預測結果（共 ${n} 人）\n沈伯洋：${g.length} 票（${pc(g.length)}%）\n蔣萬安：${b.length} 票（${pc(b.length)}%）\n\n預測沈伯洋：${g.map(v=>v.name).join('、')||'無'}\n預測蔣萬安：${b.map(v=>v.name).join('、')||'無'}`}
+$('#copy').onclick=async()=>{try{await navigator.clipboard.writeText(summary());$('#copied').textContent='已複製 ✓'}catch(e){$('#copied').textContent='複製失敗，請手動選取'}setTimeout(()=>$('#copied').textContent='',2500)};
+function listen(){
+  if(unsub){unsub();unsub=null}
+  unsub=onSnapshot(collection(fs,'votes'),snap=>{
+    votes=[];snap.docs.forEach(d=>{const x=d.data()||{};if(x.choice==='shen'||x.choice==='chiang')votes.push({name:String(x.name||'匿名').slice(0,16),choice:x.choice,ts:Number(x.ts)||0})});
+    votes.sort((a,b)=>b.ts-a.ts);$('#gate').hidden=true;$('#dash').hidden=false;$('#err2').textContent='';render();
+  },e=>{
+    $('#gate').hidden=false;$('#dash').hidden=true;
+    $('#err').textContent=e.code==='permission-denied'?(tried?'認證碼不正確':''):'讀取失敗（'+(e.code||'error')+'）';
+  });
+}
+async function boot(){
+  try{uid=(await signInAnonymously(auth)).user.uid}catch(e){$('#err').textContent='無法連線（'+(e.code||'error')+'），請重新整理';return}
+  listen();
+}
+$('#go').onclick=async()=>{
+  const pin=$('#pin').value.trim();if(!pin||!uid)return;
+  tried=true;$('#err').textContent='驗證中…';
+  try{await setDoc(doc(fs,'admins',uid),{pin})}catch(e){$('#err').textContent='認證碼不正確';return}
+  listen();
+};
+$('#pin').addEventListener('keydown',e=>{if(e.key==='Enter')$('#go').click()});
+$('#logout').onclick=async()=>{if(unsub){unsub();unsub=null}await signOut(auth);tried=false;$('#pin').value='';$('#gate').hidden=false;$('#dash').hidden=true;boot()};
+boot();
+</script>
+</body>
+</html>
