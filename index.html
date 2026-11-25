@@ -81,46 +81,12 @@ body.locked .num,body.locked .pct{filter:blur(11px)}
 .btn.mine{background:#ffd24a;color:#2a1d00;opacity:1;filter:none}
 .hint{text-align:center;margin-top:14px;color:var(--gold);font-weight:700;font-size:14px;animation:blink 1.4s infinite}
 
-/* tug of war */
-.tugwrap{margin-top:26px;padding:16px 14px 14px;border-radius:20px;border:1px solid rgba(255,255,255,.12);background:rgba(10,12,26,.7);backdrop-filter:blur(8px);position:relative}
-.tuglabels{display:flex;justify-content:space-between;font-weight:900;font-size:clamp(14px,3.8vw,20px);margin-bottom:10px}
-.tuglabels .l{color:var(--g)}.tuglabels .r{color:var(--b)}
-.tuglabels b{font-family:Orbitron,sans-serif}
-.tug{position:relative;height:34px;border-radius:99px;background:#0d1020;box-shadow:inset 0 0 0 2px rgba(255,255,255,.1)}
-.fill{position:absolute;top:0;height:100%;transition:width 1.3s cubic-bezier(.34,1.56,.64,1)}
-.fill.g{left:0;border-radius:99px 0 0 99px;width:50%;background:repeating-linear-gradient(115deg,rgba(255,255,255,.18) 0 10px,transparent 10px 20px),linear-gradient(90deg,#0a9a5c,#19e68c);background-size:40px 100%,100% 100%;animation:flow 1s linear infinite;box-shadow:0 0 24px rgba(25,230,140,.7)}
-.fill.b{right:0;border-radius:0 99px 99px 0;width:50%;background:repeating-linear-gradient(115deg,rgba(255,255,255,.18) 0 10px,transparent 10px 20px),linear-gradient(270deg,#1c4fd1,#3d8bff);background-size:40px 100%,100% 100%;animation:flowr 1s linear infinite;box-shadow:0 0 24px rgba(61,139,255,.7)}
-@keyframes flow{to{background-position:40px 0,0 0}}
-@keyframes flowr{to{background-position:-40px 0,0 0}}
-.spark{position:absolute;top:50%;left:50%;width:34px;height:60px;transform:translate(-50%,-50%);transition:left 1.3s cubic-bezier(.34,1.56,.64,1);pointer-events:none;
-  background:radial-gradient(ellipse at center,#fff 0 18%,rgba(255,230,120,.9) 30%,transparent 70%);filter:blur(1px);animation:spk .18s infinite alternate}
-@keyframes spk{from{transform:translate(-50%,-50%) scale(1,1) rotate(-6deg)}to{transform:translate(-50%,-50%) scale(1.25,1.15) rotate(6deg)}}
-.lead{margin-top:14px;text-align:center;font-weight:900;font-size:clamp(16px,4.4vw,24px);color:#fff;text-shadow:0 0 14px rgba(255,255,255,.4)}
-.lead em{font-style:normal;font-family:Orbitron,sans-serif;color:var(--gold)}
-.lockmsg{display:none;text-align:center;color:var(--mut);font-size:13px;margin-top:6px}
-body.locked .lockmsg{display:block}
-
-/* board */
-#board{margin-top:26px}
-body.locked #board{display:none}
-.boardhead{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:10px}
-.boardhead h3{font-size:20px;font-weight:900}
-.boardhead span{color:var(--mut);font-size:13px}
-.cols{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.col{--cr:25,230,140;border-radius:18px;padding:12px 10px;background:rgba(10,12,26,.72);border:1px solid rgba(var(--cr),.4);backdrop-filter:blur(6px);min-width:0}
-.col.b{--cr:61,139,255}
-.col h4{font-size:clamp(13px,3.4vw,16px);font-weight:900;color:rgb(var(--cr));margin-bottom:8px;display:flex;justify-content:space-between;gap:6px}
-.col h4 em{font-style:normal;font-family:Orbitron,sans-serif}
-.col ul{list-style:none;display:flex;flex-direction:column;gap:6px;max-height:520px;overflow-y:auto;padding-right:2px}
-.col li{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:8px 10px;border-radius:10px;background:rgba(var(--cr),.12);border-left:3px solid rgb(var(--cr));font-size:14px;animation:pop .5s cubic-bezier(.3,1.6,.5,1)}
-.col li .nm{font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
-.col li time{font-family:Orbitron,sans-serif;font-size:10px;color:var(--mut);flex:none}
-.col li.me{background:rgba(255,210,74,.2);border-left-color:var(--gold)}
-.col li.me .nm::after{content:" ★";color:var(--gold)}
-.col li.fresh{animation:fresh 1.6s ease-out}
-.col .empty{color:var(--mut);font-size:13px;text-align:center;padding:14px 0}
-@keyframes pop{from{opacity:0;transform:translateX(-14px) scale(.9)}}
-@keyframes fresh{0%{background:rgba(255,255,255,.9);transform:scale(1.06)}100%{}}
+/* done panel */
+.donewrap{margin-top:26px;padding:22px 16px;border-radius:20px;text-align:center;border:1px solid rgba(255,210,74,.45);background:rgba(10,12,26,.75);backdrop-filter:blur(8px);box-shadow:0 0 50px -14px rgba(255,210,74,.6);animation:pop .6s cubic-bezier(.3,1.6,.5,1)}
+.donewrap[hidden]{display:none}
+.donemsg{font-weight:900;font-size:clamp(18px,5vw,28px);color:#fff;text-shadow:0 0 16px rgba(255,210,74,.5)}
+.donewrap p{margin-top:8px;color:var(--mut);font-size:13px;line-height:1.7}
+@keyframes pop{from{opacity:0;transform:translateY(16px) scale(.94)}}
 .foot{margin-top:34px;text-align:center;font-size:12px;color:var(--mut);line-height:1.8}
 
 /* overlays */
@@ -164,10 +130,6 @@ body.locked #board{display:none}
 .toast.err{border-color:#ff5470;color:#ffb3c0}
 @keyframes tin{from{opacity:0;transform:translateY(-30px) scale(.9)}}
 @keyframes tout{to{opacity:0;transform:translateY(-14px)}}
-#flip{position:fixed;left:50%;top:38%;z-index:26;transform:translate(-50%,-50%);pointer-events:none;text-align:center;font-weight:900;font-size:clamp(28px,8vw,64px);color:#fff;text-shadow:0 0 30px var(--gold),0 0 60px var(--gold);opacity:0}
-#flip.go{animation:flipin 2.4s ease-out}
-#flip small{display:block;font-size:.4em;color:var(--gold);letter-spacing:.2em}
-@keyframes flipin{0%{opacity:0;transform:translate(-50%,-50%) scale(3) rotate(-8deg)}12%{opacity:1;transform:translate(-50%,-50%) scale(1) rotate(0)}80%{opacity:1}100%{opacity:0;transform:translate(-50%,-50%) scale(.9)}}
 .notice{margin-top:14px;padding:10px 14px;border-radius:12px;background:rgba(255,84,112,.12);border:1px solid rgba(255,84,112,.4);color:#ffc2cc;text-align:center;font-size:13px}
 .notice[hidden]{display:none}
 /* ===== 開場對決畫面 ===== */
@@ -211,18 +173,16 @@ body:has(#intro:not([hidden])){overflow:hidden}
 @media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;animation-iteration-count:1!important}}
 </style>
 </head>
-<body class="locked">
+<body>
 <div class="bgsplit"></div>
 <canvas id="fx"></canvas>
 <div id="toasts"></div>
 <div id="flash"></div>
-<div id="flip"></div>
 
 <main>
   <div class="kicker">2026 · 台北市長預測大戰</div>
   <h1 class="title glitch" data-t="你覺得誰會當選台北市長？">你覺得誰會當選台北市長？</h1>
   <div class="pills">
-    <span class="pill live">已有 <b id="total">0</b> 人參戰</span>
     <span class="pill" id="cd">距離投票日</span>
     <span class="pill me" id="mepill" hidden></span>
   </div>
@@ -232,43 +192,27 @@ body:has(#intro:not([hidden])){overflow:hidden}
     <div class="vs">VS</div>
 
     <article class="card shen" data-k="shen">
-      <div class="crown">👑</div>
       <div class="portrait" id="pt-shen"></div>
       <span class="tag">民進黨 · 挑戰者</span>
       <div class="cname">沈伯洋</div>
-      <div class="num"><span id="n-shen">88</span><small>票</small></div>
-      <div class="pct" id="p-shen">88.8%</div>
       <button class="btn" data-k="shen" disabled>預測他當選！</button>
     </article>
 
     <article class="card chiang" data-k="chiang">
-      <div class="crown">👑</div>
       <div class="portrait" id="pt-chiang"></div>
       <span class="tag">國民黨 · 現任市長</span>
       <div class="cname">蔣萬安</div>
-      <div class="num"><span id="n-chiang">88</span><small>票</small></div>
-      <div class="pct" id="p-chiang">88.8%</div>
       <button class="btn" data-k="chiang" disabled>預測他當選！</button>
     </article>
   </section>
   <div class="hint" id="hint" hidden>👆 點選你預測會當選的人，一人一票！</div>
 
-  <section class="tugwrap" id="tugwrap">
-    <div class="tuglabels"><span class="l">沈伯洋 <b id="pgL">50.0%</b></span><span class="r"><b id="pgR">50.0%</b> 蔣萬安</span></div>
-    <div class="tug"><div class="fill g" id="fillG"></div><div class="fill b" id="fillB"></div><div class="spark" id="spark"></div></div>
-    <div class="lead" id="lead">🔒 投票後立即解鎖即時戰況</div>
-    <div class="lockmsg">投完票後，這裡會即時顯示票數、拉鋸戰況，以及每個人投給了誰。</div>
+  <section class="donewrap" id="donewrap" hidden>
+    <div class="donemsg" id="doneMsg"></div>
+    <p>基於選舉期間的考量，本頁不公開任何票數、比例或投票名單。</p>
   </section>
 
-  <section id="board">
-    <div class="boardhead"><h3>🔥 即時預測名單</h3><span>最新的在最上面</span></div>
-    <div class="cols">
-      <div class="col g"><h4><span>預測 沈伯洋 當選</span><em id="cG">0</em></h4><ul id="listG"></ul></div>
-      <div class="col b"><h4><span>預測 蔣萬安 當選</span><em id="cB">0</em></h4><ul id="listB"></ul></div>
-    </div>
-  </section>
-
-  <div class="foot">投票截止時間：2026/11/28 下午 2:00（台灣時間）<br>這是朋友之間的非科學預測遊戲，不代表任何民調、選舉結果或機構立場。<br>每個瀏覽器限投一票，姓名會公開顯示在名單上。</div>
+  <div class="foot">投票截止時間：2026/11/28 下午 2:00（台灣時間）<br>這是朋友之間的非科學預測遊戲，不代表任何民調、選舉結果或機構立場。<br>每個瀏覽器限投一票。投票結果與名單不對外公開。</div>
 </main>
 
 <!-- opening face-off + name -->
@@ -292,7 +236,7 @@ body:has(#intro:not([hidden])){overflow:hidden}
     </div>
   </div>
   <div class="ix-form">
-    <p>報上大名，加入這場預測對決 ⚔<br><span style="font-size:12px;color:#aab2d6;font-weight:500">你的姓名會公開顯示在投票名單上</span></p>
+    <p>報上大名，加入這場預測對決 ⚔<br><span style="font-size:12px;color:#aab2d6;font-weight:500">投票結果與名單不對外公開</span></p>
     <input id="nameIn" maxlength="12" placeholder="請輸入你的姓名" autocomplete="off" enterkeyhint="go">
     <div class="err" id="nameErr"></div>
     <button class="btn big" id="nameGo">進入戰場 ⚔</button>
@@ -322,7 +266,7 @@ body:has(#intro:not([hidden])){overflow:hidden}
 <script type="module">
 import {initializeApp} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import {getAuth,signInAnonymously} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-import {getFirestore,collection,doc,getDoc,setDoc,onSnapshot} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import {getFirestore,doc,getDoc,setDoc} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 import FB_CONFIG from "./firebase-config.js";
 (()=>{
 "use strict";
@@ -334,8 +278,7 @@ const PHOTOS={shen:'',chiang:''};
 const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 let bias=.5;
-const S={db:null,uid:null,name:'',voted:false,mine:null,readOnly:false,ready:false,first:true,
-  votes:[],seen:new Set(),shown:{shen:0,chiang:0},prevLeader:null,busy:false,pick:null,loadT:0};
+const S={db:null,uid:null,name:'',voted:false,mine:null,readOnly:false,ready:false,busy:false,pick:null};
 
 /* ---------- avatars ---------- */
 function avatar(k,p){
@@ -362,43 +305,15 @@ function tickCountdown(){
     const d=Math.floor(left/864e5),h=Math.floor(left%864e5/36e5),m=Math.floor(left%36e5/6e4),s=Math.floor(left%6e4/1e3),p=n=>String(n).padStart(2,'0');
     el.textContent=`⏳ 截止倒數 ${d}天 ${p(h)}:${p(m)}:${p(s)}`;
   }
-  if(!wasClosed&&closed()){wasClosed=true;showNotice('投票時間到！預測已截止，以下是最終戰況。');updateModal();render()}
+  if(!wasClosed&&closed()){wasClosed=true;showNotice('投票時間到！預測已截止。');updateModal();render()}
 }
 setInterval(tickCountdown,1000);
 
 /* ---------- toast / helpers ---------- */
 function toast(txt,cls){const box=$('#toasts');while(box.children.length>3)box.firstChild.remove();
   const d=document.createElement('div');d.className='toast '+(cls||'');d.textContent=txt;box.appendChild(d);setTimeout(()=>d.remove(),4200);}
-function hhmm(ts){if(!ts)return'';try{return new Date(ts).toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit',hour12:false})}catch(e){return''}}
-const tw={};
-function tween(el,to,key,dur=1200){
-  const from=S.shown[key];if(from===to){el.textContent=to;return}
-  const id=(tw[key]=(tw[key]||0)+1),t0=performance.now();
-  el.parentNode.classList.remove('bump');void el.parentNode.offsetWidth;el.parentNode.classList.add('bump');
-  const step=n=>{if(tw[key]!==id)return;const p=Math.min(1,(n-t0)/dur),e=1-Math.pow(1-p,4),v=Math.round(from+(to-from)*e);el.textContent=v;S.shown[key]=v;if(p<1)requestAnimationFrame(step)};
-  requestAnimationFrame(step);
-}
-function setTug(p){$('#fillG').style.width=p+'%';$('#fillB').style.width=(100-p)+'%';$('#spark').style.left=p+'%';}
-
 /* ---------- render ---------- */
-function fillList(ul,arr,freshIds){
-  ul.textContent='';
-  if(!arr.length){const e=document.createElement('div');e.className='empty';e.textContent='還沒有人，來搶頭香！';ul.appendChild(e);return}
-  arr.slice(0,300).forEach(v=>{
-    const li=document.createElement('li');
-    if(v.id===S.uid)li.className='me';
-    if(freshIds.has(v.id))li.classList.add('fresh');
-    const nm=document.createElement('span');nm.className='nm';nm.textContent=v.name;
-    const tm=document.createElement('time');tm.textContent=hhmm(v.ts);
-    li.append(nm,tm);ul.appendChild(li);
-  });
-}
-function render(fresh){
-  fresh=fresh||[];
-  const g=S.votes.filter(v=>v.choice==='shen'),b=S.votes.filter(v=>v.choice==='chiang'),total=S.votes.length;
-  const open=S.voted||S.readOnly||closed();
-  document.body.classList.toggle('locked',!open);
-  $('#total').textContent=total;
+function render(){
   document.querySelectorAll('.btn[data-k]').forEach(bt=>{
     const k=bt.dataset.k;bt.disabled=!(canVote());
     if(S.voted){bt.disabled=true;bt.classList.toggle('mine',S.mine===k);bt.textContent=S.mine===k?'★ 你的預測':'已投票'}
@@ -407,39 +322,9 @@ function render(fresh){
   $('#arena').classList.toggle('armed',canVote());
   $('#hint').hidden=!canVote();
   if(S.voted&&S.name){const p=$('#mepill');p.hidden=false;p.textContent='👤 '+S.name}
-  if(!open){
-    S.shown.shen=0;S.shown.chiang=0;
-    ['shen','chiang'].forEach(k=>{$('#n-'+k).textContent='88';$('#p-'+k).textContent='88.8%'});
-    setTug(50);$('#pgL').textContent='??.?%';$('#pgR').textContent='??.?%';$('#lead').textContent='🔒 投票後立即解鎖即時戰況';
-    bias=.5;document.querySelectorAll('.card').forEach(c=>c.classList.remove('leading'));S.prevLeader=null;
-    return;
-  }
-  tween($('#n-shen'),g.length,'shen');tween($('#n-chiang'),b.length,'chiang');
-  const pg=total?g.length/total*100:50,pb=total?100-pg:50;
-  $('#p-shen').textContent=(total?pg:0).toFixed(1)+'%';$('#p-chiang').textContent=(total?pb:0).toFixed(1)+'%';
-  $('#pgL').textContent=pg.toFixed(1)+'%';$('#pgR').textContent=pb.toFixed(1)+'%';
-  setTug(total?Math.min(96,Math.max(4,pg)):50);
-  bias=total?Math.min(.85,Math.max(.15,pg/100)):.5;
-  const diff=g.length-b.length,leader=diff>0?'shen':diff<0?'chiang':null;
-  document.querySelector('.card.shen').classList.toggle('leading',leader==='shen');
-  document.querySelector('.card.chiang').classList.toggle('leading',leader==='chiang');
-  const lead=$('#lead');lead.textContent='';
-  if(!total)lead.textContent='還沒有人表態，成為第一個預測者！';
-  else if(!leader)lead.textContent='⚔ 雙方平手！下一票決定戰局';
-  else{lead.append(C[leader].name+' 領先 ');const em=document.createElement('em');em.textContent=Math.abs(diff);lead.append(em,' 票 🔥')}
-  if(S.prevLeader&&leader&&leader!==S.prevLeader)flip(leader);
-  if(leader||total)S.prevLeader=leader||S.prevLeader;
-  if(!leader&&total)S.prevLeader=null;
-  const ids=new Set(fresh.map(v=>v.id));
-  fillList($('#listG'),g,ids);fillList($('#listB'),b,ids);
-  $('#cG').textContent=g.length;$('#cB').textContent=b.length;
-  fresh.forEach(v=>{if(v.id===S.uid||Date.now()-v.ts>90000)return;
-    toast(`${v.name} 剛剛預測 ${C[v.choice].name} 當選！`,v.choice);
-    const el=document.querySelector('.card.'+v.choice);if(el){const r=el.getBoundingClientRect();burst(r.left+r.width/2,r.top+r.height/3,C[v.choice].cr,26,false)}
-  });
+  const d=$('#donewrap');d.hidden=!(S.voted||closed());
+  $('#doneMsg').textContent=S.voted?'🔒 你預測 '+C[S.mine].name+' 當選，預測已鎖定':'🏁 投票已截止，感謝參與';
 }
-function flip(k){const f=$('#flip');f.textContent='';f.append('⚡ 逆轉！');const s=document.createElement('small');s.textContent=C[k].name+' 衝上第一';f.appendChild(s);
-  f.classList.remove('go');void f.offsetWidth;f.classList.add('go');boomFx(C[k].cr,false)}
 
 /* ---------- flow ---------- */
 function canVote(){return S.ready&&!closed()&&!S.voted&&!S.readOnly&&!!S.db&&!!S.uid&&!!S.name&&!S.busy}
@@ -475,7 +360,7 @@ async function submit(k){
   if(!canVote())return;
   if(closed()){toast('投票時間已截止','err');render();return}
   S.busy=true;updateModal();render();
-  const ref=S.db.collection('votes').doc(S.uid);
+  const ref=S.db.doc(S.uid);
   try{const ex=await ref.get();if(ex.exists){S.busy=false;toast('你已經投過票囉！','err');return}}catch(e){}
   const box=$('#chargeBox');box.className='chargebox '+k;
   $('#chargeTxt').textContent='鎖定預測：'+C[k].name+' 當選';
@@ -487,33 +372,17 @@ async function submit(k){
   const err=await wp;
   if(err){$('#charge').hidden=true;S.busy=false;render();toast('送出失敗，請稍後再試（'+(err.code||'error')+'）','err');return}
   S.voted=true;S.mine=k;
-  cnt.className='count done';cnt.textContent='預測成功！';$('#chargeSub').textContent=C[k].name+' 加一票 🔥';
+  cnt.className='count done';cnt.textContent='預測成功！';$('#chargeSub').textContent='結果不公開，感謝參與 🔒';
   const f=$('#flash');f.style.background=`rgb(${C[k].cr})`;f.classList.remove('go');void f.offsetWidth;f.classList.add('go');
   document.body.classList.add('shake');setTimeout(()=>document.body.classList.remove('shake'),700);
   boomFx(C[k].cr,true);
   await sleep(1900);
   $('#charge').hidden=true;S.busy=false;
   render();
-  $('#tugwrap').scrollIntoView({behavior:'smooth',block:'start'});
+  $('#donewrap').scrollIntoView({behavior:'smooth',block:'center'});
 }
 
 /* ---------- data ---------- */
-function onSnap(snap){
-  clearTimeout(S.loadT);$('#notice').hidden=true;
-  const arr=[];
-  snap.docs.forEach(d=>{const x=d.data()||{};if(x.choice!=='shen'&&x.choice!=='chiang')return;
-    arr.push({id:d.id,name:String(x.name||'匿名').slice(0,16),choice:x.choice,ts:Number(x.ts)||0})});
-  arr.sort((a,b)=>b.ts-a.ts);
-  const fresh=[];
-  for(const v of arr){if(!S.seen.has(v.id)){S.seen.add(v.id);if(!S.first)fresh.push(v)}}
-  S.votes=arr;
-  const mine=S.uid&&arr.find(v=>v.id===S.uid);
-  if(mine&&!S.voted&&!S.busy){S.voted=true;S.mine=mine.choice;S.name=mine.name}
-  const wasFirst=S.first;S.first=false;S.ready=true;
-  updateModal();
-  render(S.voted&&!S.busy?fresh:[]);
-  if(wasFirst&&S.voted&&mine)$('#mepill').hidden=false;
-}
 function showNotice(t){const n=$('#notice');n.textContent=t;n.hidden=false}
 async function init(){
   render();tickCountdown();
@@ -523,14 +392,14 @@ async function init(){
   try{
     const app=initializeApp(FB_CONFIG),auth=getAuth(app),fs=getFirestore(app);
     const cred=await signInAnonymously(auth);S.uid=cred.user.uid;
-    S.db={collection:name=>({
-      onSnapshot:(next,err)=>onSnapshot(collection(fs,name),next,err),
-      doc:id=>{const r=doc(fs,name,id);return{get:async()=>{const x=await getDoc(r);return{exists:x.exists()}},set:d=>setDoc(r,d)}}
-    })};
+    S.db={doc:id=>{const r=doc(fs,'votes',id);return{get:async()=>{const x=await getDoc(r);return{exists:x.exists(),data:x.data()}},set:d=>setDoc(r,d)}}};
   }catch(e){S.ready=true;showNotice('無法連線到投票資料庫（'+(e&&e.code||'error')+'），請稍後重新整理。');render();return}
-  S.loadT=setTimeout(()=>showNotice('連線較慢，正在等待投票資料…'),10000);
-  S.db.collection('votes').onSnapshot(onSnap,e=>{clearTimeout(S.loadT);S.ready=true;showNotice('投票資料暫時讀取失敗（'+(e&&e.code||'error')+'）');render()});
-  // 讀不到資料時也要讓介面可用（空資料庫的第一個快照通常很快就來）
+  /* 只讀取「自己」的那一張票，用來判斷是否已投過；其他人的票讀不到 */
+  try{
+    const ex=await S.db.doc(S.uid).get();
+    if(ex.exists){const x=ex.data||{};if(x.choice==='shen'||x.choice==='chiang'){S.voted=true;S.mine=x.choice;S.name=String(x.name||'').slice(0,12)}}
+  }catch(e){showNotice('暫時無法確認投票狀態（'+(e&&e.code||'error')+'），請稍後重新整理。')}
+  S.ready=true;updateModal();render();
 }
 init();
 
@@ -545,7 +414,7 @@ if(!reduce)document.querySelectorAll('.card').forEach(card=>{
 const cv=$('#fx'),cx=cv.getContext('2d');let W=0,H=0;
 function resize(){const d=Math.min(devicePixelRatio||1,2);W=innerWidth;H=innerHeight;cv.width=W*d;cv.height=H*d;cx.setTransform(d,0,0,d,0,0)}
 addEventListener('resize',resize);resize();
-const embers=[],sparks=[],conf=[],bolts=[];
+const embers=[],conf=[],bolts=[];
 function spawnEmber(){const left=Math.random()<bias,x=left?Math.random()*W*.55:W*.45+Math.random()*W*.55;
   embers.push({x,y:H+8,vx:(Math.random()-.5)*.7+(left?.2:-.2),vy:-(.6+Math.random()*1.9),r:1+Math.random()*2.4,life:1,dec:.0025+Math.random()*.004,c:left?'25,230,140':'61,139,255',w:Math.random()*6.28})}
 function burst(x,y,cr,n,gold){for(let i=0;i<n;i++){const a=Math.random()*6.283,s=2+Math.random()*(gold?10:6);
@@ -560,8 +429,8 @@ function drawBolt(pts,a,ax,bx){const gr=cx.createLinearGradient(ax,0,bx,0);gr.ad
   cx.beginPath();pts.forEach((p,i)=>i?cx.lineTo(p[0],p[1]):cx.moveTo(p[0],p[1]));
   cx.lineJoin='round';cx.shadowBlur=26;cx.shadowColor=`rgba(180,220,255,${a})`;cx.strokeStyle=gr;cx.lineWidth=5;cx.stroke();
   cx.shadowBlur=0;cx.strokeStyle=`rgba(255,255,255,${a})`;cx.lineWidth=1.6;cx.stroke()}
-let nextBolt=0,sparkTick=0;
-const cardG=document.querySelector('.card.shen'),cardB=document.querySelector('.card.chiang'),sparkEl=$('#spark'),introEl=$('#intro'),ipG=$('#ip-shen'),ipB=$('#ip-chiang');
+let nextBolt=0;
+const cardG=document.querySelector('.card.shen'),cardB=document.querySelector('.card.chiang'),introEl=$('#intro'),ipG=$('#ip-shen'),ipB=$('#ip-chiang');
 function frame(t){
   requestAnimationFrame(frame);if(document.hidden)return;
   cx.clearRect(0,0,W,H);
@@ -572,18 +441,11 @@ function frame(t){
     if(e.life<=0||e.y<-10){embers.splice(i,1);continue}
     cx.fillStyle=`rgba(${e.c},${e.life*.18})`;cx.beginPath();cx.arc(e.x,e.y,e.r*3.2,0,6.283);cx.fill();
     cx.fillStyle=`rgba(${e.c},${e.life*.9})`;cx.beginPath();cx.arc(e.x,e.y,e.r,0,6.283);cx.fill()}
-  /* tug sparks */
-  if(!reduce&&(++sparkTick%2===0)){const r=sparkEl.getBoundingClientRect();
-    if(r.bottom>0&&r.top<H&&r.width>0&&!document.body.classList.contains('locked')||(r.bottom>0&&r.top<H&&r.width>0)){
-      const x=r.left+r.width/2,y=r.top+r.height/2;
-      for(let i=0;i<3;i++){const a=Math.random()*6.283,s=1+Math.random()*4;sparks.push({x,y,vx:Math.cos(a)*s,vy:Math.sin(a)*s-1.5,life:1,dec:.03+Math.random()*.04})}}}
-  for(let i=sparks.length-1;i>=0;i--){const s=sparks[i];s.x+=s.vx;s.y+=s.vy;s.vy+=.15;s.life-=s.dec;if(s.life<=0){sparks.splice(i,1);continue}
-    cx.fillStyle=`rgba(255,${200+Math.random()*55|0},120,${s.life})`;cx.fillRect(s.x,s.y,2.2,2.2)}
   /* lightning between the two cards */
   if(t>nextBolt&&!reduce){
     const inIntro=!introEl.hidden&&!introEl.classList.contains('out');
     const a=(inIntro?ipG:cardG).getBoundingClientRect(),b=(inIntro?ipB:cardB).getBoundingClientRect();
-    const close=inIntro||(!document.body.classList.contains('locked')&&Math.abs(bias-.5)<.1);
+    const close=true;
     nextBolt=t+(close?300:600)+Math.random()*(close?500:1000);
     if(a.bottom>60&&a.top<H-60){const yy=a.top+a.height*(.15+Math.random()*.55),yy2=b.top+b.height*(.15+Math.random()*.55);
       const ax=a.right-4,bx=b.left+4;bolts.push({pts:mkBolt(ax,yy,bx,yy2),born:t,ax,bx});
