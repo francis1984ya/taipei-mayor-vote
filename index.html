@@ -32,6 +32,18 @@ body.shake main{animation:shake .6s}
 @keyframes gl2{0%,84%,100%{clip-path:inset(100% 0 0 0)}86%{clip-path:inset(60% 0 10% 0);transform:translateX(6px)}91%{clip-path:inset(20% 0 60% 0);transform:translateX(-5px)}96%{clip-path:inset(45% 0 35% 0);transform:translateX(3px)}}
 .pills{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;font-size:13px}
 .pill{padding:6px 14px;border-radius:99px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.05);backdrop-filter:blur(6px);color:#dfe4ff}
+.cdbox{margin:6px auto 14px;text-align:center}
+.cdlabel{font-weight:900;font-size:clamp(14px,3.8vw,20px);letter-spacing:.12em;color:var(--gold);text-shadow:0 0 14px rgba(255,210,74,.6);margin-bottom:8px}
+.cdsegs{display:flex;justify-content:center;gap:clamp(6px,2vw,14px)}
+.cdsegs>div{min-width:clamp(64px,20vw,128px);padding:clamp(8px,2vw,14px) 6px clamp(6px,1.6vw,10px);border-radius:16px;background:linear-gradient(180deg,rgba(255,210,74,.16),rgba(10,12,26,.85));border:1px solid rgba(255,210,74,.55);box-shadow:0 0 30px -8px rgba(255,210,74,.7),inset 0 0 24px -12px rgba(255,210,74,.8)}
+.cdsegs b{display:block;font-family:Orbitron,sans-serif;font-weight:900;font-size:clamp(34px,11vw,84px);line-height:1.05;color:#fff;text-shadow:0 0 22px rgba(255,210,74,.9),0 0 4px rgba(255,255,255,.8);font-variant-numeric:tabular-nums}
+.cdsegs small{display:block;margin-top:2px;font-size:clamp(11px,3vw,16px);font-weight:700;color:#cfd6ff;letter-spacing:.3em;margin-right:-.3em}
+.cdbox.hot .cdsegs>div{border-color:rgba(255,84,112,.8);box-shadow:0 0 36px -6px rgba(255,84,112,.9),inset 0 0 24px -12px rgba(255,84,112,.9);animation:hotp 1s ease-in-out infinite}
+.cdbox.hot .cdsegs b{text-shadow:0 0 22px rgba(255,84,112,1),0 0 4px #fff}
+.cdbox.hot .cdlabel{color:#ff7b8f;text-shadow:0 0 14px rgba(255,84,112,.8)}
+.cdbox.done .cdsegs{display:none}
+.cdbox.done .cdlabel{font-size:clamp(20px,6vw,34px)}
+@keyframes hotp{50%{transform:scale(1.05)}}
 .pill b{font-family:Orbitron,sans-serif;color:var(--gold)}
 .pill.me{border-color:rgba(255,210,74,.5);color:var(--gold)}
 .pill.live::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:#ff3b5c;margin-right:7px;box-shadow:0 0 10px #ff3b5c;animation:blink 1s infinite}
@@ -182,8 +194,11 @@ body:has(#intro:not([hidden])){overflow:hidden}
 <main>
   <div class="kicker">2026 · 台北市長預測大戰</div>
   <h1 class="title glitch" data-t="你覺得誰會當選台北市長？">你覺得誰會當選台北市長？</h1>
+  <div class="cdbox" id="cdbox">
+    <div class="cdlabel" id="cdlabel">⏳ 投票截止倒數</div>
+    <div class="cdsegs" id="cd"><div><b id="cdD">0</b><small>天</small></div><div><b id="cdH">00</b><small>時</small></div><div><b id="cdM">00</b><small>分</small></div><div><b id="cdS">00</b><small>秒</small></div></div>
+  </div>
   <div class="pills">
-    <span class="pill" id="cd">距離投票日</span>
     <span class="pill me" id="mepill" hidden></span>
   </div>
   <div class="notice" id="notice" hidden></div>
@@ -212,7 +227,7 @@ body:has(#intro:not([hidden])){overflow:hidden}
     <p>基於選舉期間的考量，本頁不公開任何票數、比例或投票名單。</p>
   </section>
 
-  <div class="foot">投票截止時間：2026/11/28 下午 2:00（台灣時間）<br>這是朋友之間的非科學預測遊戲，不代表任何民調、選舉結果或機構立場。<br>每個瀏覽器限投一票。投票結果與名單不對外公開。</div>
+  <div class="foot">投票截止時間：2026/11/28 下午 3:59（台灣時間）<br>這是朋友之間的非科學預測遊戲，不代表任何民調、選舉結果或機構立場。<br>每個瀏覽器限投一票。投票結果與名單不對外公開。</div>
 </main>
 
 <!-- opening face-off + name -->
@@ -295,15 +310,17 @@ $('#pt-shen').innerHTML=avatar('shen','a');$('#pt-chiang').innerHTML=avatar('chi
 $('#ip-shen').innerHTML=avatar('shen','i');$('#ip-chiang').innerHTML=avatar('chiang','i');
 
 /* ---------- 截止時間（台灣時間）：要改日期只改這一行 ---------- */
-const DEADLINE=new Date('2026-11-28T14:00:00+08:00');
+const DEADLINE=new Date('2026-11-28T15:59:00+08:00');
 const closed=()=>Date.now()>=DEADLINE.getTime();
 let wasClosed=closed();
 function tickCountdown(){
-  const el=$('#cd'),left=DEADLINE.getTime()-Date.now();
-  if(left<=0){el.textContent='🏁 投票已截止（11/28 14:00）';}
+  const box=$('#cdbox'),left=DEADLINE.getTime()-Date.now();
+  if(left<=0){box.classList.add('done');box.classList.remove('hot');$('#cdlabel').textContent='🏁 投票已截止（11/28 15:59）';}
   else{
     const d=Math.floor(left/864e5),h=Math.floor(left%864e5/36e5),m=Math.floor(left%36e5/6e4),s=Math.floor(left%6e4/1e3),p=n=>String(n).padStart(2,'0');
-    el.textContent=`⏳ 截止倒數 ${d}天 ${p(h)}:${p(m)}:${p(s)}`;
+    $('#cdD').textContent=d;$('#cdH').textContent=p(h);$('#cdM').textContent=p(m);$('#cdS').textContent=p(s);
+    $('#cdlabel').textContent=left<36e5?'🔥 最後一小時！投票即將截止':'⏳ 投票截止倒數（11/28 15:59）';
+    box.classList.toggle('hot',left<36e5);box.classList.remove('done');
   }
   if(!wasClosed&&closed()){wasClosed=true;showNotice('投票時間到！預測已截止。');updateModal();render()}
 }
