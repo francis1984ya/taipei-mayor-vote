@@ -268,7 +268,7 @@ body:has(#intro:not([hidden])){overflow:hidden}
     </div>
   </section>
 
-  <div class="foot">主辦：🦁 嘉中獅子會<br>投票截止時間：2026/12/28 下午 2:00（台灣時間）<br>這是朋友之間的非科學預測遊戲，不代表任何民調、選舉結果或機構立場。<br>每個瀏覽器限投一票，姓名會公開顯示在名單上。</div>
+  <div class="foot">主辦：🦁 嘉中獅子會<br>投票截止時間：2026/11/28 下午 2:00（台灣時間）<br>這是朋友之間的非科學預測遊戲，不代表任何民調、選舉結果或機構立場。<br>每個瀏覽器限投一票，姓名會公開顯示在名單上。</div>
 </main>
 
 <!-- opening face-off + name -->
@@ -352,12 +352,12 @@ $('#pt-shen').innerHTML=avatar('shen','a');$('#pt-chiang').innerHTML=avatar('chi
 $('#ip-shen').innerHTML=avatar('shen','i');$('#ip-chiang').innerHTML=avatar('chiang','i');
 
 /* ---------- 截止時間（台灣時間）：要改日期只改這一行 ---------- */
-const DEADLINE=new Date('2026-12-28T14:00:00+08:00');
+const DEADLINE=new Date('2026-11-28T14:00:00+08:00');
 const closed=()=>Date.now()>=DEADLINE.getTime();
 let wasClosed=closed();
 function tickCountdown(){
   const el=$('#cd'),left=DEADLINE.getTime()-Date.now();
-  if(left<=0){el.textContent='🏁 投票已截止（12/28 14:00）';}
+  if(left<=0){el.textContent='🏁 投票已截止（11/28 14:00）';}
   else{
     const d=Math.floor(left/864e5),h=Math.floor(left%864e5/36e5),m=Math.floor(left%36e5/6e4),s=Math.floor(left%6e4/1e3),p=n=>String(n).padStart(2,'0');
     el.textContent=`⏳ 截止倒數 ${d}天 ${p(h)}:${p(m)}:${p(s)}`;

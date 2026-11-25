@@ -12,7 +12,7 @@ service cloud.firestore {
         && request.resource.data.name.size() <= 12
         && request.resource.data.choice in ['shen','chiang']
         && request.resource.data.ts is number
-        && request.time < timestamp.date(2026, 12, 28) + duration.value(6, 'h');
+        && request.time < timestamp.date(2026, 11, 28) + duration.value(6, 'h');
       allow update, delete: if false;
     }
   }
