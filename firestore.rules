@@ -1,0 +1,19 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // 每個人（匿名登入的 uid）只能新增「自己的一票」，投出後不能修改或刪除，並且只在截止時間前有效
+    match /votes/{uid} {
+      allow read: if true;
+      allow create: if request.auth != null
+        && request.auth.uid == uid
+        && request.resource.data.keys().hasOnly(['name','choice','ts'])
+        && request.resource.data.name is string
+        && request.resource.data.name.size() >= 1
+        && request.resource.data.name.size() <= 12
+        && request.resource.data.choice in ['shen','chiang']
+        && request.resource.data.ts is number
+        && request.time < timestamp.date(2026, 12, 28) + duration.value(6, 'h');
+      allow update, delete: if false;
+    }
+  }
+}

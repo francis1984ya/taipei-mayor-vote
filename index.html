@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>嘉中獅子會｜台北市長世紀對決預測</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@500;700;900&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root{--g:#19e68c;--g2:#0a9a5c;--b:#3d8bff;--b2:#1c4fd1;--bg:#06070d;--ink:#eef2ff;--mut:#8b93b5;--gold:#ffd24a}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--bg);color:var(--ink);font-family:'Noto Sans TC',system-ui,sans-serif;-webkit-tap-highlight-color:transparent}
+body{min-height:100vh;overflow-x:hidden}
+.bgsplit{position:fixed;inset:0;z-index:0;background:
+  radial-gradient(60% 75% at 0% 35%,rgba(25,230,140,.2),transparent 70%),
+  radial-gradient(60% 75% at 100% 35%,rgba(61,139,255,.22),transparent 70%),
+  repeating-linear-gradient(115deg,rgba(255,255,255,.02) 0 2px,transparent 2px 22px),#06070d}
+#fx{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:22}
+main{position:relative;z-index:2;max-width:1100px;margin:0 auto;padding:16px 12px 70px}
+body.shake main{animation:shake .6s}
+@keyframes shake{0%,100%{transform:none}10%{transform:translate(-9px,5px)}25%{transform:translate(8px,-7px)}40%{transform:translate(-7px,-4px)}55%{transform:translate(6px,6px)}70%{transform:translate(-4px,2px)}85%{transform:translate(3px,-2px)}}
+
+/* header */
+.kicker{letter-spacing:.38em;font-size:11px;color:var(--gold);text-align:center;font-weight:700;text-transform:uppercase}
+.title{font-weight:900;font-size:clamp(25px,6.6vw,58px);text-align:center;line-height:1.15;position:relative;margin:6px 0 10px;letter-spacing:.02em}
+.glitch{position:relative;display:block}
+.glitch::before,.glitch::after{content:attr(data-t);position:absolute;inset:0;overflow:hidden}
+.glitch::before{color:var(--g);transform:translateX(-3px);clip-path:inset(0 0 60% 0);animation:gl1 2.8s infinite steps(1)}
+.glitch::after{color:var(--b);transform:translateX(3px);clip-path:inset(60% 0 0 0);animation:gl2 2.3s infinite steps(1)}
+@keyframes gl1{0%,88%,100%{clip-path:inset(0 0 100% 0)}90%{clip-path:inset(10% 0 55% 0);transform:translateX(-6px)}94%{clip-path:inset(40% 0 30% 0);transform:translateX(5px)}97%{clip-path:inset(70% 0 5% 0);transform:translateX(-3px)}}
+@keyframes gl2{0%,84%,100%{clip-path:inset(100% 0 0 0)}86%{clip-path:inset(60% 0 10% 0);transform:translateX(6px)}91%{clip-path:inset(20% 0 60% 0);transform:translateX(-5px)}96%{clip-path:inset(45% 0 35% 0);transform:translateX(3px)}}
+.pills{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;font-size:13px}
+.pill{padding:6px 14px;border-radius:99px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.05);backdrop-filter:blur(6px);color:#dfe4ff}
+.pill b{font-family:Orbitron,sans-serif;color:var(--gold)}
+.pill.me{border-color:rgba(255,210,74,.5);color:var(--gold)}
+.pill.live::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:#ff3b5c;margin-right:7px;box-shadow:0 0 10px #ff3b5c;animation:blink 1s infinite}
+@keyframes blink{50%{opacity:.2}}
+
+/* arena */
+.arena{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px}
+.vs{position:absolute;left:50%;top:min(27%,120px);transform:translate(-50%,-50%);z-index:4;font-family:Orbitron,sans-serif;font-weight:900;font-size:clamp(30px,8vw,66px);color:#fff;pointer-events:none;
+  text-shadow:0 0 14px #fff,-4px 0 var(--g),4px 0 var(--b),0 0 40px rgba(255,255,255,.5);animation:vs 1.2s infinite}
+@keyframes vs{0%,100%{transform:translate(-50%,-50%) scale(1) rotate(-3deg)}50%{transform:translate(-50%,-50%) scale(1.18) rotate(3deg)}}
+.card{--cr:25,230,140;--c:var(--g);position:relative;padding:14px 8px 14px;border-radius:22px;text-align:center;border:1px solid rgba(var(--cr),.45);
+  background:linear-gradient(180deg,rgba(var(--cr),.14),rgba(255,255,255,.02) 55%);overflow:hidden;cursor:default;
+  box-shadow:0 0 34px -10px rgba(var(--cr),.8),inset 0 0 40px -20px rgba(var(--cr),.9);transition:transform .2s ease-out,box-shadow .3s,filter .3s;will-change:transform}
+.card.chiang{--cr:61,139,255;--c:var(--b)}
+.card::before{content:"";position:absolute;inset:-40%;background:conic-gradient(from 0deg,transparent 0 70%,rgba(var(--cr),.35) 85%,transparent 100%);animation:spin 5s linear infinite;z-index:0}
+.card::after{content:"";position:absolute;inset:2px;border-radius:20px;background:linear-gradient(180deg,#0b0e1c,#070914);z-index:0}
+.card>*{position:relative;z-index:1}
+@keyframes spin{to{transform:rotate(360deg)}}
+.armed .card{cursor:pointer}
+.armed .card:hover{box-shadow:0 0 70px -6px rgba(var(--cr),1),inset 0 0 50px -14px rgba(var(--cr),1)}
+.arena:has(.card:hover) .card:not(:hover){filter:brightness(.55) saturate(.6)}
+.card.leading{box-shadow:0 0 80px -4px rgba(var(--cr),1),inset 0 0 50px -14px rgba(var(--cr),1);animation:lead 1.4s ease-in-out infinite}
+@keyframes lead{50%{box-shadow:0 0 110px 4px rgba(var(--cr),1),inset 0 0 60px -10px rgba(var(--cr),1)}}
+.crown{position:absolute;top:6px;right:10px;font-size:26px;opacity:0;transform:translateY(-12px) rotate(14deg) scale(.6);transition:.4s;filter:drop-shadow(0 0 10px gold);z-index:3}
+.card.leading .crown{opacity:1;transform:rotate(14deg);animation:float 1.6s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-6px) rotate(8deg)}}
+.portrait{position:relative;width:min(64%,172px);aspect-ratio:5/6;margin:4px auto 6px}
+.portrait::before{content:"";position:absolute;inset:-9%;border-radius:50%;border:2px dashed rgba(var(--cr),.7);animation:spin 9s linear infinite reverse}
+.portrait svg{position:relative;width:100%;height:100%;filter:drop-shadow(0 0 16px rgba(var(--cr),.8));animation:breathe 3s ease-in-out infinite}
+@keyframes breathe{50%{transform:scale(1.045)}}
+.tag{display:inline-block;font-size:11px;font-weight:700;padding:3px 10px;border-radius:99px;background:rgba(var(--cr),.18);color:var(--c);border:1px solid rgba(var(--cr),.5);letter-spacing:.06em}
+.cname{font-size:clamp(28px,7.4vw,52px);font-weight:900;line-height:1.1;margin:6px 0 2px;text-shadow:0 0 22px rgba(var(--cr),.9)}
+.num{font-family:Orbitron,sans-serif;font-weight:900;font-size:clamp(34px,9.5vw,70px);line-height:1.05;color:var(--c);text-shadow:0 0 24px rgba(var(--cr),.95);transition:filter .6s}
+.num small{font-family:'Noto Sans TC';font-size:.28em;margin-left:4px;color:#cfd6ff;text-shadow:none}
+.pct{font-family:Orbitron,sans-serif;font-weight:700;font-size:clamp(14px,3.6vw,22px);color:#d7ddff;transition:filter .6s}
+body.locked .num,body.locked .pct{filter:blur(11px)}
+.bump{animation:bump .5s}
+@keyframes bump{40%{transform:scale(1.25)}}
+.btn{position:relative;overflow:hidden;font:inherit;font-weight:900;color:#06130d;border:0;border-radius:14px;padding:13px 10px;width:100%;margin-top:10px;cursor:pointer;font-size:clamp(14px,3.6vw,18px);
+  background:linear-gradient(180deg,var(--c),rgba(var(--cr),.7));box-shadow:0 8px 26px -6px rgba(var(--cr),.9);transition:transform .15s,opacity .3s}
+.card.chiang .btn{color:#fff}
+.btn::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.65),transparent);animation:shine 2.2s infinite}
+@keyframes shine{0%{left:-60%}60%,100%{left:130%}}
+.btn:active{transform:scale(.96)}
+.btn:disabled{opacity:.28;cursor:not-allowed;filter:grayscale(.6)}
+.btn:disabled::after{display:none}
+.btn.mine{background:#ffd24a;color:#2a1d00;opacity:1;filter:none}
+.hint{text-align:center;margin-top:14px;color:var(--gold);font-weight:700;font-size:14px;animation:blink 1.4s infinite}
+
+/* tug of war */
+.tugwrap{margin-top:26px;padding:16px 14px 14px;border-radius:20px;border:1px solid rgba(255,255,255,.12);background:rgba(10,12,26,.7);backdrop-filter:blur(8px);position:relative}
+.tuglabels{display:flex;justify-content:space-between;font-weight:900;font-size:clamp(14px,3.8vw,20px);margin-bottom:10px}
+.tuglabels .l{color:var(--g)}.tuglabels .r{color:var(--b)}
+.tuglabels b{font-family:Orbitron,sans-serif}
+.tug{position:relative;height:34px;border-radius:99px;background:#0d1020;box-shadow:inset 0 0 0 2px rgba(255,255,255,.1)}
+.fill{position:absolute;top:0;height:100%;transition:width 1.3s cubic-bezier(.34,1.56,.64,1)}
+.fill.g{left:0;border-radius:99px 0 0 99px;width:50%;background:repeating-linear-gradient(115deg,rgba(255,255,255,.18) 0 10px,transparent 10px 20px),linear-gradient(90deg,#0a9a5c,#19e68c);background-size:40px 100%,100% 100%;animation:flow 1s linear infinite;box-shadow:0 0 24px rgba(25,230,140,.7)}
+.fill.b{right:0;border-radius:0 99px 99px 0;width:50%;background:repeating-linear-gradient(115deg,rgba(255,255,255,.18) 0 10px,transparent 10px 20px),linear-gradient(270deg,#1c4fd1,#3d8bff);background-size:40px 100%,100% 100%;animation:flowr 1s linear infinite;box-shadow:0 0 24px rgba(61,139,255,.7)}
+@keyframes flow{to{background-position:40px 0,0 0}}
+@keyframes flowr{to{background-position:-40px 0,0 0}}
+.spark{position:absolute;top:50%;left:50%;width:34px;height:60px;transform:translate(-50%,-50%);transition:left 1.3s cubic-bezier(.34,1.56,.64,1);pointer-events:none;
+  background:radial-gradient(ellipse at center,#fff 0 18%,rgba(255,230,120,.9) 30%,transparent 70%);filter:blur(1px);animation:spk .18s infinite alternate}
+@keyframes spk{from{transform:translate(-50%,-50%) scale(1,1) rotate(-6deg)}to{transform:translate(-50%,-50%) scale(1.25,1.15) rotate(6deg)}}
+.lead{margin-top:14px;text-align:center;font-weight:900;font-size:clamp(16px,4.4vw,24px);color:#fff;text-shadow:0 0 14px rgba(255,255,255,.4)}
+.lead em{font-style:normal;font-family:Orbitron,sans-serif;color:var(--gold)}
+.lockmsg{display:none;text-align:center;color:var(--mut);font-size:13px;margin-top:6px}
+body.locked .lockmsg{display:block}
+
+/* board */
+#board{margin-top:26px}
+body.locked #board{display:none}
+.boardhead{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:10px}
+.boardhead h3{font-size:20px;font-weight:900}
+.boardhead span{color:var(--mut);font-size:13px}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.col{--cr:25,230,140;border-radius:18px;padding:12px 10px;background:rgba(10,12,26,.72);border:1px solid rgba(var(--cr),.4);backdrop-filter:blur(6px);min-width:0}
+.col.b{--cr:61,139,255}
+.col h4{font-size:clamp(13px,3.4vw,16px);font-weight:900;color:rgb(var(--cr));margin-bottom:8px;display:flex;justify-content:space-between;gap:6px}
+.col h4 em{font-style:normal;font-family:Orbitron,sans-serif}
+.col ul{list-style:none;display:flex;flex-direction:column;gap:6px;max-height:520px;overflow-y:auto;padding-right:2px}
+.col li{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:8px 10px;border-radius:10px;background:rgba(var(--cr),.12);border-left:3px solid rgb(var(--cr));font-size:14px;animation:pop .5s cubic-bezier(.3,1.6,.5,1)}
+.col li .nm{font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+.col li time{font-family:Orbitron,sans-serif;font-size:10px;color:var(--mut);flex:none}
+.col li.me{background:rgba(255,210,74,.2);border-left-color:var(--gold)}
+.col li.me .nm::after{content:" ★";color:var(--gold)}
+.col li.fresh{animation:fresh 1.6s ease-out}
+.col .empty{color:var(--mut);font-size:13px;text-align:center;padding:14px 0}
+@keyframes pop{from{opacity:0;transform:translateX(-14px) scale(.9)}}
+@keyframes fresh{0%{background:rgba(255,255,255,.9);transform:scale(1.06)}100%{}}
+.foot{margin-top:34px;text-align:center;font-size:12px;color:var(--mut);line-height:1.8}
+
+/* overlays */
+.overlay{position:fixed;inset:0;z-index:20;display:flex;align-items:center;justify-content:center;padding:18px;background:rgba(3,4,10,.78);backdrop-filter:blur(8px)}
+.overlay[hidden]{display:none}
+.panel{width:min(440px,100%);padding:28px 22px;border-radius:24px;text-align:center;background:linear-gradient(180deg,#12162c,#0a0c1b);border:1px solid rgba(255,255,255,.18);box-shadow:0 0 80px -10px rgba(61,139,255,.6),0 0 80px -10px rgba(25,230,140,.5);animation:panel .5s cubic-bezier(.3,1.5,.5,1)}
+@keyframes panel{from{opacity:0;transform:scale(.8) translateY(30px)}}
+.panel h2{font-size:26px;font-weight:900;margin:8px 0}
+.panel p{color:#b7bede;font-size:14px;line-height:1.7;margin-bottom:14px}
+.panel input{width:100%;font:inherit;font-size:20px;font-weight:700;text-align:center;color:#fff;background:#0a0d1d;border:2px solid rgba(255,255,255,.2);border-radius:14px;padding:14px;outline:0;transition:.2s}
+.panel input:focus{border-color:var(--gold);box-shadow:0 0 24px rgba(255,210,74,.4)}
+.btn.big{--cr:255,210,74;--c:var(--gold);color:#2a1d00;font-size:18px;padding:15px}
+.btn.ghost{background:transparent;box-shadow:none;color:#cfd6ff;border:1px solid rgba(255,255,255,.25)}
+.btn.ghost::after{display:none}
+.row{display:flex;gap:10px}
+.err{color:#ff7b8f;font-size:13px;min-height:18px;margin-top:8px}
+#confirm .panel{--cr:25,230,140}
+#confirm.chiang .panel{--cr:61,139,255}
+#confirm .panel{box-shadow:0 0 90px -6px rgba(var(--cr),.9)}
+#confirm .who{font-size:44px;font-weight:900;color:rgb(var(--cr));text-shadow:0 0 28px rgba(var(--cr),1);margin:6px 0}
+#confirm .btn:not(.ghost){--c:rgb(var(--cr))}
+#confirm.chiang .btn:not(.ghost){color:#fff}
+#charge{background:rgba(2,3,8,.9)}
+.chargebox{text-align:center;--cr:25,230,140}
+.chargebox.chiang{--cr:61,139,255}
+.chargeTxt{font-size:clamp(18px,5vw,28px);font-weight:900;letter-spacing:.1em;color:#fff}
+.count{font-family:Orbitron,sans-serif;font-weight:900;font-size:clamp(120px,36vw,260px);line-height:1;color:rgb(var(--cr));text-shadow:0 0 50px rgb(var(--cr)),0 0 120px rgb(var(--cr));animation:cnt .5s ease-out}
+.count.done{font-family:'Noto Sans TC';font-size:clamp(46px,13vw,110px);color:#fff;animation:boom .7s cubic-bezier(.2,1.8,.4,1)}
+.chargeSub{color:#aab2d6;margin-top:6px;letter-spacing:.2em}
+@keyframes cnt{from{transform:scale(2.4);opacity:0}to{transform:scale(1);opacity:1}}
+@keyframes boom{from{transform:scale(.2) rotate(-12deg);opacity:0}to{transform:scale(1) rotate(0);opacity:1}}
+#flash{position:fixed;inset:0;z-index:25;pointer-events:none;opacity:0}
+#flash.go{animation:flash .9s ease-out}
+@keyframes flash{0%{opacity:.95}100%{opacity:0}}
+.ring{position:fixed;z-index:24;width:20px;height:20px;border-radius:50%;border:5px solid #fff;transform:translate(-50%,-50%) scale(1);opacity:1;pointer-events:none;animation:ring 1s ease-out forwards}
+@keyframes ring{to{transform:translate(-50%,-50%) scale(60);opacity:0;border-width:1px}}
+#toasts{position:fixed;top:10px;left:50%;transform:translateX(-50%);z-index:30;display:flex;flex-direction:column;gap:8px;width:min(92vw,440px);pointer-events:none}
+.toast{padding:11px 16px;border-radius:14px;font-weight:700;font-size:14px;background:rgba(12,14,30,.95);border:1px solid rgba(255,255,255,.2);box-shadow:0 8px 30px rgba(0,0,0,.5);animation:tin .4s cubic-bezier(.3,1.6,.5,1),tout .4s 3.7s forwards}
+.toast.shen{border-color:var(--g);box-shadow:0 0 28px -4px rgba(25,230,140,.7)}
+.toast.chiang{border-color:var(--b);box-shadow:0 0 28px -4px rgba(61,139,255,.7)}
+.toast.err{border-color:#ff5470;color:#ffb3c0}
+@keyframes tin{from{opacity:0;transform:translateY(-30px) scale(.9)}}
+@keyframes tout{to{opacity:0;transform:translateY(-14px)}}
+#flip{position:fixed;left:50%;top:38%;z-index:26;transform:translate(-50%,-50%);pointer-events:none;text-align:center;font-weight:900;font-size:clamp(28px,8vw,64px);color:#fff;text-shadow:0 0 30px var(--gold),0 0 60px var(--gold);opacity:0}
+#flip.go{animation:flipin 2.4s ease-out}
+#flip small{display:block;font-size:.4em;color:var(--gold);letter-spacing:.2em}
+@keyframes flipin{0%{opacity:0;transform:translate(-50%,-50%) scale(3) rotate(-8deg)}12%{opacity:1;transform:translate(-50%,-50%) scale(1) rotate(0)}80%{opacity:1}100%{opacity:0;transform:translate(-50%,-50%) scale(.9)}}
+.notice{margin-top:14px;padding:10px 14px;border-radius:12px;background:rgba(255,84,112,.12);border:1px solid rgba(255,84,112,.4);color:#ffc2cc;text-align:center;font-size:13px}
+.notice[hidden]{display:none}
+/* ===== 開場對決畫面 ===== */
+.intro{position:fixed;inset:0;z-index:20;display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:16px 12px 20px;overflow-x:hidden;overflow-y:auto;background:#05060c}
+.intro[hidden]{display:none}
+.intro.out{animation:ixout .6s ease-in forwards;pointer-events:none}
+@keyframes ixout{to{opacity:0;transform:scale(1.18);filter:blur(8px)}}
+.ix-bg{position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(70% 80% at 0% 55%,rgba(25,230,140,.5),transparent 68%),radial-gradient(70% 80% at 100% 55%,rgba(61,139,255,.55),transparent 68%),
+  repeating-linear-gradient(115deg,rgba(255,255,255,.035) 0 2px,transparent 2px 20px)}
+.ix-bg::after{content:"";position:absolute;left:50%;top:-10%;width:5px;height:120%;transform:translateX(-50%) rotate(12deg);
+  background:linear-gradient(#fff,#ffd24a 50%,#fff);box-shadow:0 0 22px 6px rgba(255,255,255,.7),0 0 90px 20px rgba(255,210,74,.5);animation:slash 1.6s ease-in-out infinite}
+@keyframes slash{0%,100%{opacity:.55;width:4px}50%{opacity:1;width:7px}}
+.ix-top{position:relative;z-index:2;text-align:center;width:100%;animation:ixdrop .8s cubic-bezier(.2,1.4,.4,1) both}
+@keyframes ixdrop{from{opacity:0;transform:translateY(-40px)}}
+.club{display:inline-flex;align-items:center;gap:12px;font-size:clamp(26px,7.5vw,46px);margin-bottom:4px}
+.club b{font-weight:900;letter-spacing:.28em;margin-right:-.28em;background:linear-gradient(180deg,#fff6c9,#ffd24a 45%,#c98a00);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 14px rgba(255,210,74,.65))}
+.club span{font-size:.8em;animation:float 1.8s ease-in-out infinite}
+.club span:last-child{animation-delay:.9s}
+body:has(#intro:not([hidden])){overflow:hidden}
+.ix-title{font-weight:900;font-size:clamp(26px,7vw,54px);line-height:1.15;margin-top:4px;letter-spacing:.04em;text-shadow:0 0 24px rgba(255,255,255,.35)}
+.ix-stage{position:relative;z-index:2;width:100%;max-width:920px;flex:1;min-height:0;display:flex;justify-content:space-between;align-items:center;gap:4px}
+.ix-side{--cr:25,230,140;--dir:1;flex:1;min-width:0;text-align:center;animation:inL 1s cubic-bezier(.2,1.2,.3,1) both}
+.ix-side.chiang{--cr:61,139,255;--dir:-1;animation-name:inR}
+@keyframes inL{from{transform:translateX(-130%) skewX(-12deg);opacity:0}}
+@keyframes inR{from{transform:translateX(130%) skewX(12deg);opacity:0}}
+.ix-portrait{position:relative;width:min(41vw,300px,31vh);aspect-ratio:5/6;margin:0 auto;animation:lunge 1.5s ease-in-out 1s infinite}
+@keyframes lunge{50%{transform:translateX(calc(var(--dir)*16px)) scale(1.06)}}
+.ix-portrait::before{content:"";position:absolute;inset:-10%;border-radius:50%;border:3px dashed rgba(var(--cr),.75);animation:spin 8s linear infinite}
+.ix-portrait svg{position:relative;width:100%;height:100%;filter:drop-shadow(0 0 26px rgba(var(--cr),.95))}
+.ix-name{font-size:clamp(30px,9.5vw,66px);font-weight:900;line-height:1.1;margin-top:12px;text-shadow:0 0 28px rgba(var(--cr),1),0 0 4px rgba(var(--cr),1)}
+.ix-side .tag{margin-top:4px}
+.intro .vs{top:42%;font-size:clamp(40px,11vw,96px)}
+.ix-form{position:relative;z-index:3;width:min(440px,100%);text-align:center;animation:ixup .8s .9s cubic-bezier(.2,1.2,.4,1) both;padding:16px 14px 14px;border-radius:20px;background:rgba(5,6,14,.72);border:1px solid rgba(255,255,255,.2);backdrop-filter:blur(10px);box-shadow:0 0 60px -10px rgba(255,210,74,.5)}
+@keyframes ixup{from{opacity:0;transform:translateY(50px)}}
+.ix-form p{font-weight:700;font-size:15px;margin-bottom:10px;color:#e6eaff}
+.ix-form input{width:100%;font:inherit;font-size:20px;font-weight:700;text-align:center;color:#fff;background:#0a0d1d;border:2px solid rgba(255,255,255,.25);border-radius:14px;padding:13px;outline:0;transition:.2s}
+.ix-form input:focus{border-color:var(--gold);box-shadow:0 0 24px rgba(255,210,74,.45)}
+.ix-form .err{min-height:16px;margin-top:6px}
+.ix-form .btn{margin-top:4px}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;animation-iteration-count:1!important}}
+</style>
+</head>
+<body class="locked">
+<div class="bgsplit"></div>
+<canvas id="fx"></canvas>
+<div id="toasts"></div>
+<div id="flash"></div>
+<div id="flip"></div>
+
+<main>
+  <div class="kicker">🦁 嘉中獅子會 · 2026 台北市長預測大戰</div>
+  <h1 class="title glitch" data-t="你覺得誰會當選台北市長？">你覺得誰會當選台北市長？</h1>
+  <div class="pills">
+    <span class="pill live">已有 <b id="total">0</b> 人參戰</span>
+    <span class="pill" id="cd">距離投票日</span>
+    <span class="pill me" id="mepill" hidden></span>
+  </div>
+  <div class="notice" id="notice" hidden></div>
+
+  <section class="arena" id="arena">
+    <div class="vs">VS</div>
+
+    <article class="card shen" data-k="shen">
+      <div class="crown">👑</div>
+      <div class="portrait" id="pt-shen"></div>
+      <span class="tag">民進黨 · 挑戰者</span>
+      <div class="cname">沈伯洋</div>
+      <div class="num"><span id="n-shen">88</span><small>票</small></div>
+      <div class="pct" id="p-shen">88.8%</div>
+      <button class="btn" data-k="shen" disabled>預測他當選！</button>
+    </article>
+
+    <article class="card chiang" data-k="chiang">
+      <div class="crown">👑</div>
+      <div class="portrait" id="pt-chiang"></div>
+      <span class="tag">國民黨 · 現任市長</span>
+      <div class="cname">蔣萬安</div>
+      <div class="num"><span id="n-chiang">88</span><small>票</small></div>
+      <div class="pct" id="p-chiang">88.8%</div>
+      <button class="btn" data-k="chiang" disabled>預測他當選！</button>
+    </article>
+  </section>
+  <div class="hint" id="hint" hidden>👆 點選你預測會當選的人，一人一票！</div>
+
+  <section class="tugwrap" id="tugwrap">
+    <div class="tuglabels"><span class="l">沈伯洋 <b id="pgL">50.0%</b></span><span class="r"><b id="pgR">50.0%</b> 蔣萬安</span></div>
+    <div class="tug"><div class="fill g" id="fillG"></div><div class="fill b" id="fillB"></div><div class="spark" id="spark"></div></div>
+    <div class="lead" id="lead">🔒 投票後立即解鎖即時戰況</div>
+    <div class="lockmsg">投完票後，這裡會即時顯示票數、拉鋸戰況，以及每個人投給了誰。</div>
+  </section>
+
+  <section id="board">
+    <div class="boardhead"><h3>🔥 即時預測名單</h3><span>最新的在最上面</span></div>
+    <div class="cols">
+      <div class="col g"><h4><span>預測 沈伯洋 當選</span><em id="cG">0</em></h4><ul id="listG"></ul></div>
+      <div class="col b"><h4><span>預測 蔣萬安 當選</span><em id="cB">0</em></h4><ul id="listB"></ul></div>
+    </div>
+  </section>
+
+  <div class="foot">主辦：🦁 嘉中獅子會<br>投票截止時間：2026/12/28 下午 2:00（台灣時間）<br>這是朋友之間的非科學預測遊戲，不代表任何民調、選舉結果或機構立場。<br>每個瀏覽器限投一票，姓名會公開顯示在名單上。</div>
+</main>
+
+<!-- opening face-off + name -->
+<div class="intro" id="intro">
+  <div class="ix-bg"></div>
+  <div class="ix-top">
+    <div class="kicker">🦁 嘉中獅子會 敬邀 · 2026 台北市長世紀對決</div>
+    <h2 class="ix-title glitch" data-t="台北市長 預測大戰">台北市長 預測大戰</h2>
+  </div>
+  <div class="ix-stage">
+    <div class="ix-side shen">
+      <div class="ix-portrait" id="ip-shen"></div>
+      <div class="ix-name">沈伯洋</div>
+      <span class="tag">民進黨 · 挑戰者</span>
+    </div>
+    <div class="vs">VS</div>
+    <div class="ix-side chiang">
+      <div class="ix-portrait" id="ip-chiang"></div>
+      <div class="ix-name">蔣萬安</div>
+      <span class="tag">國民黨 · 現任市長</span>
+    </div>
+  </div>
+  <div class="ix-form">
+    <p>報上大名，加入這場預測對決 ⚔<br><span style="font-size:12px;color:#aab2d6;font-weight:500">你的姓名會公開顯示在投票名單上</span></p>
+    <input id="nameIn" maxlength="12" placeholder="請輸入你的姓名" autocomplete="off" enterkeyhint="go">
+    <div class="err" id="nameErr"></div>
+    <button class="btn big" id="nameGo">進入戰場 ⚔</button>
+  </div>
+</div>
+
+<!-- confirm -->
+<div class="overlay" id="confirm" hidden>
+  <div class="panel">
+    <div class="kicker">LOCK IN YOUR PREDICTION</div>
+    <p style="margin:10px 0 0">你預測這次台北市長會由</p>
+    <div class="who" id="cfWho"></div>
+    <p>當選。送出後就不能修改了！</p>
+    <div class="row"><button class="btn ghost" id="cfNo">再想想</button><button class="btn" id="cfYes">確認送出 🔥</button></div>
+  </div>
+</div>
+
+<!-- charge -->
+<div class="overlay" id="charge" hidden>
+  <div class="chargebox" id="chargeBox">
+    <div class="chargeTxt" id="chargeTxt"></div>
+    <div class="count" id="count">3</div>
+    <div class="chargeSub" id="chargeSub">鎖定預測中…</div>
+  </div>
+</div>
+
+<script type="module">
+import {initializeApp} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import {getAuth,signInAnonymously} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import {getFirestore,collection,doc,getDoc,setDoc,onSnapshot} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import FB_CONFIG from "./firebase-config.js";
+(()=>{
+"use strict";
+const $=s=>document.querySelector(s);
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+const C={shen:{name:'沈伯洋',glyph:'沈',cr:'25,230,140',hex:'#19e68c'},chiang:{name:'蔣萬安',glyph:'蔣',cr:'61,139,255',hex:'#3d8bff'}};
+/* 要放真實照片：把圖片轉成 data:image/jpeg;base64,... 貼到下面兩個引號中即可 */
+const PHOTOS={shen:'',chiang:''};
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+let bias=.5;
+const S={db:null,uid:null,name:'',voted:false,mine:null,readOnly:false,ready:false,first:true,
+  votes:[],seen:new Set(),shown:{shen:0,chiang:0},prevLeader:null,busy:false,pick:null,loadT:0};
+
+/* ---------- avatars ---------- */
+function avatar(k,p){
+  p=p||'';const c=C[k].hex,hex='M100 6 L186 52 L186 188 L100 234 L14 188 L14 52 Z';
+  const img=PHOTOS[k]?`<image href="${PHOTOS[k]}" x="14" y="6" width="172" height="228" preserveAspectRatio="xMidYMid slice"/>`:
+   `<text x="100" y="176" text-anchor="middle" font-size="150" font-weight="900" fill="${c}" opacity=".2" font-family="Noto Sans TC,sans-serif">${C[k].glyph}</text>
+    <circle cx="100" cy="100" r="34" fill="#0b0f1f" opacity=".9"/>
+    <path d="M34 240 C34 178 68 148 100 148 C132 148 166 178 166 240 Z" fill="#0b0f1f" opacity=".9"/>`;
+  return `<svg viewBox="0 0 200 240" aria-hidden="true"><defs><linearGradient id="${p}g${k}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${c}" stop-opacity=".6"/><stop offset="1" stop-color="#0a0d1c"/></linearGradient><clipPath id="${p}cp${k}"><path d="${hex}"/></clipPath></defs>
+  <path d="${hex}" fill="url(#${p}g${k})"/><g clip-path="url(#${p}cp${k})">${img}</g>
+  <path d="${hex}" fill="none" stroke="${c}" stroke-width="4"/><path d="M26 60 L26 40 L46 40 M174 60 L174 40 L154 40 M26 180 L26 200 L46 200 M174 180 L174 200 L154 200" fill="none" stroke="#fff" stroke-opacity=".7" stroke-width="3"/></svg>`;
+}
+$('#pt-shen').innerHTML=avatar('shen','a');$('#pt-chiang').innerHTML=avatar('chiang','a');
+$('#ip-shen').innerHTML=avatar('shen','i');$('#ip-chiang').innerHTML=avatar('chiang','i');
+
+/* ---------- 截止時間（台灣時間）：要改日期只改這一行 ---------- */
+const DEADLINE=new Date('2026-12-28T14:00:00+08:00');
+const closed=()=>Date.now()>=DEADLINE.getTime();
+let wasClosed=closed();
+function tickCountdown(){
+  const el=$('#cd'),left=DEADLINE.getTime()-Date.now();
+  if(left<=0){el.textContent='🏁 投票已截止（12/28 14:00）';}
+  else{
+    const d=Math.floor(left/864e5),h=Math.floor(left%864e5/36e5),m=Math.floor(left%36e5/6e4),s=Math.floor(left%6e4/1e3),p=n=>String(n).padStart(2,'0');
+    el.textContent=`⏳ 截止倒數 ${d}天 ${p(h)}:${p(m)}:${p(s)}`;
+  }
+  if(!wasClosed&&closed()){wasClosed=true;showNotice('投票時間到！預測已截止，以下是最終戰況。');updateModal();render()}
+}
+setInterval(tickCountdown,1000);
+
+/* ---------- toast / helpers ---------- */
+function toast(txt,cls){const box=$('#toasts');while(box.children.length>3)box.firstChild.remove();
+  const d=document.createElement('div');d.className='toast '+(cls||'');d.textContent=txt;box.appendChild(d);setTimeout(()=>d.remove(),4200);}
+function hhmm(ts){if(!ts)return'';try{return new Date(ts).toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit',hour12:false})}catch(e){return''}}
+const tw={};
+function tween(el,to,key,dur=1200){
+  const from=S.shown[key];if(from===to){el.textContent=to;return}
+  const id=(tw[key]=(tw[key]||0)+1),t0=performance.now();
+  el.parentNode.classList.remove('bump');void el.parentNode.offsetWidth;el.parentNode.classList.add('bump');
+  const step=n=>{if(tw[key]!==id)return;const p=Math.min(1,(n-t0)/dur),e=1-Math.pow(1-p,4),v=Math.round(from+(to-from)*e);el.textContent=v;S.shown[key]=v;if(p<1)requestAnimationFrame(step)};
+  requestAnimationFrame(step);
+}
+function setTug(p){$('#fillG').style.width=p+'%';$('#fillB').style.width=(100-p)+'%';$('#spark').style.left=p+'%';}
+
+/* ---------- render ---------- */
+function fillList(ul,arr,freshIds){
+  ul.textContent='';
+  if(!arr.length){const e=document.createElement('div');e.className='empty';e.textContent='還沒有人，來搶頭香！';ul.appendChild(e);return}
+  arr.slice(0,300).forEach(v=>{
+    const li=document.createElement('li');
+    if(v.id===S.uid)li.className='me';
+    if(freshIds.has(v.id))li.classList.add('fresh');
+    const nm=document.createElement('span');nm.className='nm';nm.textContent=v.name;
+    const tm=document.createElement('time');tm.textContent=hhmm(v.ts);
+    li.append(nm,tm);ul.appendChild(li);
+  });
+}
+function render(fresh){
+  fresh=fresh||[];
+  const g=S.votes.filter(v=>v.choice==='shen'),b=S.votes.filter(v=>v.choice==='chiang'),total=S.votes.length;
+  const open=S.voted||S.readOnly||closed();
+  document.body.classList.toggle('locked',!open);
+  $('#total').textContent=total;
+  document.querySelectorAll('.btn[data-k]').forEach(bt=>{
+    const k=bt.dataset.k;bt.disabled=!(canVote());
+    if(S.voted){bt.disabled=true;bt.classList.toggle('mine',S.mine===k);bt.textContent=S.mine===k?'★ 你的預測':'已投票'}
+    else if(closed()){bt.disabled=true;bt.textContent='投票已截止'}
+  });
+  $('#arena').classList.toggle('armed',canVote());
+  $('#hint').hidden=!canVote();
+  if(S.voted&&S.name){const p=$('#mepill');p.hidden=false;p.textContent='👤 '+S.name}
+  if(!open){
+    S.shown.shen=0;S.shown.chiang=0;
+    ['shen','chiang'].forEach(k=>{$('#n-'+k).textContent='88';$('#p-'+k).textContent='88.8%'});
+    setTug(50);$('#pgL').textContent='??.?%';$('#pgR').textContent='??.?%';$('#lead').textContent='🔒 投票後立即解鎖即時戰況';
+    bias=.5;document.querySelectorAll('.card').forEach(c=>c.classList.remove('leading'));S.prevLeader=null;
+    return;
+  }
+  tween($('#n-shen'),g.length,'shen');tween($('#n-chiang'),b.length,'chiang');
+  const pg=total?g.length/total*100:50,pb=total?100-pg:50;
+  $('#p-shen').textContent=(total?pg:0).toFixed(1)+'%';$('#p-chiang').textContent=(total?pb:0).toFixed(1)+'%';
+  $('#pgL').textContent=pg.toFixed(1)+'%';$('#pgR').textContent=pb.toFixed(1)+'%';
+  setTug(total?Math.min(96,Math.max(4,pg)):50);
+  bias=total?Math.min(.85,Math.max(.15,pg/100)):.5;
+  const diff=g.length-b.length,leader=diff>0?'shen':diff<0?'chiang':null;
+  document.querySelector('.card.shen').classList.toggle('leading',leader==='shen');
+  document.querySelector('.card.chiang').classList.toggle('leading',leader==='chiang');
+  const lead=$('#lead');lead.textContent='';
+  if(!total)lead.textContent='還沒有人表態，成為第一個預測者！';
+  else if(!leader)lead.textContent='⚔ 雙方平手！下一票決定戰局';
+  else{lead.append(C[leader].name+' 領先 ');const em=document.createElement('em');em.textContent=Math.abs(diff);lead.append(em,' 票 🔥')}
+  if(S.prevLeader&&leader&&leader!==S.prevLeader)flip(leader);
+  if(leader||total)S.prevLeader=leader||S.prevLeader;
+  if(!leader&&total)S.prevLeader=null;
+  const ids=new Set(fresh.map(v=>v.id));
+  fillList($('#listG'),g,ids);fillList($('#listB'),b,ids);
+  $('#cG').textContent=g.length;$('#cB').textContent=b.length;
+  fresh.forEach(v=>{if(v.id===S.uid||Date.now()-v.ts>90000)return;
+    toast(`${v.name} 剛剛預測 ${C[v.choice].name} 當選！`,v.choice);
+    const el=document.querySelector('.card.'+v.choice);if(el){const r=el.getBoundingClientRect();burst(r.left+r.width/2,r.top+r.height/3,C[v.choice].cr,26,false)}
+  });
+}
+function flip(k){const f=$('#flip');f.textContent='';f.append('⚡ 逆轉！');const s=document.createElement('small');s.textContent=C[k].name+' 衝上第一';f.appendChild(s);
+  f.classList.remove('go');void f.offsetWidth;f.classList.add('go');boomFx(C[k].cr,false)}
+
+/* ---------- flow ---------- */
+function canVote(){return S.ready&&!closed()&&!S.voted&&!S.readOnly&&!!S.db&&!!S.uid&&!!S.name&&!S.busy}
+function updateModal(){
+  /* 開場畫面：一打開就顯示；資料庫確認後，若不需要輸入姓名（已投過、已截止、無法投票）才收起 */
+  const need=!closed()&&!S.voted&&!S.readOnly&&!S.name&&!S.busy&&(!S.ready||(!!S.db&&!!S.uid));
+  const m=$('#intro');
+  if(need){m.classList.remove('out');if(m.hidden){m.hidden=false}return}
+  if(!m.hidden&&!m.classList.contains('out')){m.classList.add('out');setTimeout(()=>{if(m.classList.contains('out'))m.hidden=true},620)}
+}
+function submitName(){
+  const v=$('#nameIn').value.replace(/\s+/g,' ').trim();
+  if(!v){$('#nameErr').textContent='請先輸入姓名喔';$('#nameIn').focus();return}
+  S.name=v.slice(0,12);try{localStorage.setItem('tpe_vote_name',S.name)}catch(e){}
+  $('#nameErr').textContent='';$('#mepill').hidden=false;$('#mepill').textContent='👤 '+S.name;
+  updateModal();render();toast('歡迎 '+S.name+'！選出你預測的當選人 👇');
+  setTimeout(()=>$('#arena').scrollIntoView({behavior:'smooth',block:'start'}),200);
+}
+$('#nameGo').onclick=submitName;
+$('#nameIn').addEventListener('keydown',e=>{if(e.key==='Enter')submitName()});
+
+function askPick(k){
+  if(!canVote())return;S.pick=k;
+  const c=$('#confirm');c.className='overlay '+k;$('#cfWho').textContent=C[k].name;c.hidden=false;
+}
+$('#cfNo').onclick=()=>{$('#confirm').hidden=true;S.pick=null};
+$('#cfYes').onclick=()=>{const k=S.pick;$('#confirm').hidden=true;if(k)submit(k)};
+document.querySelectorAll('.card').forEach(card=>{
+  card.addEventListener('click',()=>askPick(card.dataset.k));
+});
+
+async function submit(k){
+  if(!canVote())return;
+  if(closed()){toast('投票時間已截止','err');render();return}
+  S.busy=true;updateModal();render();
+  const ref=S.db.collection('votes').doc(S.uid);
+  try{const ex=await ref.get();if(ex.exists){S.busy=false;toast('你已經投過票囉！','err');return}}catch(e){}
+  const box=$('#chargeBox');box.className='chargebox '+k;
+  $('#chargeTxt').textContent='鎖定預測：'+C[k].name+' 當選';
+  const cnt=$('#count');cnt.className='count';cnt.style.fontFamily='';cnt.textContent='3';$('#chargeSub').textContent='鎖定預測中…';
+  $('#charge').hidden=false;
+  const wp=ref.set({name:S.name,choice:k,ts:Date.now()}).then(()=>null,e=>e);
+  for(const n of ['2','1']){await sleep(520);cnt.textContent=n;cnt.style.animation='none';void cnt.offsetWidth;cnt.style.animation=''}
+  await sleep(520);
+  const err=await wp;
+  if(err){$('#charge').hidden=true;S.busy=false;render();toast('送出失敗，請稍後再試（'+(err.code||'error')+'）','err');return}
+  S.voted=true;S.mine=k;
+  cnt.className='count done';cnt.textContent='預測成功！';$('#chargeSub').textContent=C[k].name+' 加一票 🔥';
+  const f=$('#flash');f.style.background=`rgb(${C[k].cr})`;f.classList.remove('go');void f.offsetWidth;f.classList.add('go');
+  document.body.classList.add('shake');setTimeout(()=>document.body.classList.remove('shake'),700);
+  boomFx(C[k].cr,true);
+  await sleep(1900);
+  $('#charge').hidden=true;S.busy=false;
+  render();
+  $('#tugwrap').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+/* ---------- data ---------- */
+function onSnap(snap){
+  clearTimeout(S.loadT);$('#notice').hidden=true;
+  const arr=[];
+  snap.docs.forEach(d=>{const x=d.data()||{};if(x.choice!=='shen'&&x.choice!=='chiang')return;
+    arr.push({id:d.id,name:String(x.name||'匿名').slice(0,16),choice:x.choice,ts:Number(x.ts)||0})});
+  arr.sort((a,b)=>b.ts-a.ts);
+  const fresh=[];
+  for(const v of arr){if(!S.seen.has(v.id)){S.seen.add(v.id);if(!S.first)fresh.push(v)}}
+  S.votes=arr;
+  const mine=S.uid&&arr.find(v=>v.id===S.uid);
+  if(mine&&!S.voted&&!S.busy){S.voted=true;S.mine=mine.choice;S.name=mine.name}
+  const wasFirst=S.first;S.first=false;S.ready=true;
+  updateModal();
+  render(S.voted&&!S.busy?fresh:[]);
+  if(wasFirst&&S.voted&&mine)$('#mepill').hidden=false;
+}
+function showNotice(t){const n=$('#notice');n.textContent=t;n.hidden=false}
+async function init(){
+  render();tickCountdown();
+  try{$('#nameIn').value=(localStorage.getItem('tpe_vote_name')||'').slice(0,12)}catch(e){}
+  if(matchMedia('(pointer:fine)').matches)setTimeout(()=>$('#nameIn').focus(),1300);
+  if(!FB_CONFIG||!FB_CONFIG.apiKey||String(FB_CONFIG.apiKey).startsWith('YOUR_')){S.ready=true;showNotice('投票資料庫尚未設定完成，請聯絡主辦單位。');render();return}
+  try{
+    const app=initializeApp(FB_CONFIG),auth=getAuth(app),fs=getFirestore(app);
+    const cred=await signInAnonymously(auth);S.uid=cred.user.uid;
+    S.db={collection:name=>({
+      onSnapshot:(next,err)=>onSnapshot(collection(fs,name),next,err),
+      doc:id=>{const r=doc(fs,name,id);return{get:async()=>{const x=await getDoc(r);return{exists:x.exists()}},set:d=>setDoc(r,d)}}
+    })};
+  }catch(e){S.ready=true;showNotice('無法連線到投票資料庫（'+(e&&e.code||'error')+'），請稍後重新整理。');render();return}
+  S.loadT=setTimeout(()=>showNotice('連線較慢，正在等待投票資料…'),10000);
+  S.db.collection('votes').onSnapshot(onSnap,e=>{clearTimeout(S.loadT);S.ready=true;showNotice('投票資料暫時讀取失敗（'+(e&&e.code||'error')+'）');render()});
+  // 讀不到資料時也要讓介面可用（空資料庫的第一個快照通常很快就來）
+}
+init();
+
+/* ---------- 3D tilt ---------- */
+if(!reduce)document.querySelectorAll('.card').forEach(card=>{
+  card.addEventListener('pointermove',e=>{if(e.pointerType!=='mouse')return;const r=card.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+    card.style.transform=`perspective(800px) rotateY(${x*14}deg) rotateX(${-y*14}deg) scale(1.03)`});
+  card.addEventListener('pointerleave',()=>{card.style.transform=''});
+});
+
+/* ---------- FX canvas ---------- */
+const cv=$('#fx'),cx=cv.getContext('2d');let W=0,H=0;
+function resize(){const d=Math.min(devicePixelRatio||1,2);W=innerWidth;H=innerHeight;cv.width=W*d;cv.height=H*d;cx.setTransform(d,0,0,d,0,0)}
+addEventListener('resize',resize);resize();
+const embers=[],sparks=[],conf=[],bolts=[];
+function spawnEmber(){const left=Math.random()<bias,x=left?Math.random()*W*.55:W*.45+Math.random()*W*.55;
+  embers.push({x,y:H+8,vx:(Math.random()-.5)*.7+(left?.2:-.2),vy:-(.6+Math.random()*1.9),r:1+Math.random()*2.4,life:1,dec:.0025+Math.random()*.004,c:left?'25,230,140':'61,139,255',w:Math.random()*6.28})}
+function burst(x,y,cr,n,gold){for(let i=0;i<n;i++){const a=Math.random()*6.283,s=2+Math.random()*(gold?10:6);
+  conf.push({x,y,vx:Math.cos(a)*s,vy:Math.sin(a)*s-(gold?4:1),w:4+Math.random()*7,h:3+Math.random()*5,rot:Math.random()*6,vr:(Math.random()-.5)*.4,life:1,dec:.008+Math.random()*.01,
+    c:Math.random()<.25?'255,255,255':Math.random()<.3&&gold?'255,210,74':cr})}}
+function ring(x,y,cr){const r=document.createElement('div');r.className='ring';r.style.left=x+'px';r.style.top=y+'px';r.style.borderColor=`rgb(${cr})`;document.body.appendChild(r);setTimeout(()=>r.remove(),1100)}
+function boomFx(cr,big){const x=W/2,y=H/2;ring(x,y,cr);if(big){setTimeout(()=>ring(x,y,'255,255,255'),160);burst(x,y,cr,200,true);setTimeout(()=>burst(W*.2,H*.4,cr,60,true),200);setTimeout(()=>burst(W*.8,H*.4,cr,60,true),350)}else burst(x,H*.4,'255,210,74',70,true)}
+function mkBolt(ax,ay,bx,by){let pts=[[ax,ay],[bx,by]],amp=Math.hypot(bx-ax,by-ay)*.18;
+  for(let i=0;i<5;i++){const n=[];for(let j=0;j<pts.length-1;j++){const p=pts[j],q=pts[j+1];n.push(p);n.push([(p[0]+q[0])/2+(Math.random()-.5)*amp,(p[1]+q[1])/2+(Math.random()-.5)*amp])}n.push(pts[pts.length-1]);pts=n;amp*=.55}
+  return pts}
+function drawBolt(pts,a,ax,bx){const gr=cx.createLinearGradient(ax,0,bx,0);gr.addColorStop(0,`rgba(25,230,140,${a})`);gr.addColorStop(1,`rgba(61,139,255,${a})`);
+  cx.beginPath();pts.forEach((p,i)=>i?cx.lineTo(p[0],p[1]):cx.moveTo(p[0],p[1]));
+  cx.lineJoin='round';cx.shadowBlur=26;cx.shadowColor=`rgba(180,220,255,${a})`;cx.strokeStyle=gr;cx.lineWidth=5;cx.stroke();
+  cx.shadowBlur=0;cx.strokeStyle=`rgba(255,255,255,${a})`;cx.lineWidth=1.6;cx.stroke()}
+let nextBolt=0,sparkTick=0;
+const cardG=document.querySelector('.card.shen'),cardB=document.querySelector('.card.chiang'),sparkEl=$('#spark'),introEl=$('#intro'),ipG=$('#ip-shen'),ipB=$('#ip-chiang');
+function frame(t){
+  requestAnimationFrame(frame);if(document.hidden)return;
+  cx.clearRect(0,0,W,H);
+  /* embers */
+  if(embers.length<(reduce?30:230)&&Math.random()<(reduce?.2:1.5))spawnEmber();
+  cx.globalCompositeOperation='lighter';
+  for(let i=embers.length-1;i>=0;i--){const e=embers[i];e.x+=e.vx+Math.sin(e.w+=0.04)*.35;e.y+=e.vy;e.life-=e.dec;
+    if(e.life<=0||e.y<-10){embers.splice(i,1);continue}
+    cx.fillStyle=`rgba(${e.c},${e.life*.18})`;cx.beginPath();cx.arc(e.x,e.y,e.r*3.2,0,6.283);cx.fill();
+    cx.fillStyle=`rgba(${e.c},${e.life*.9})`;cx.beginPath();cx.arc(e.x,e.y,e.r,0,6.283);cx.fill()}
+  /* tug sparks */
+  if(!reduce&&(++sparkTick%2===0)){const r=sparkEl.getBoundingClientRect();
+    if(r.bottom>0&&r.top<H&&r.width>0&&!document.body.classList.contains('locked')||(r.bottom>0&&r.top<H&&r.width>0)){
+      const x=r.left+r.width/2,y=r.top+r.height/2;
+      for(let i=0;i<3;i++){const a=Math.random()*6.283,s=1+Math.random()*4;sparks.push({x,y,vx:Math.cos(a)*s,vy:Math.sin(a)*s-1.5,life:1,dec:.03+Math.random()*.04})}}}
+  for(let i=sparks.length-1;i>=0;i--){const s=sparks[i];s.x+=s.vx;s.y+=s.vy;s.vy+=.15;s.life-=s.dec;if(s.life<=0){sparks.splice(i,1);continue}
+    cx.fillStyle=`rgba(255,${200+Math.random()*55|0},120,${s.life})`;cx.fillRect(s.x,s.y,2.2,2.2)}
+  /* lightning between the two cards */
+  if(t>nextBolt&&!reduce){
+    const inIntro=!introEl.hidden&&!introEl.classList.contains('out');
+    const a=(inIntro?ipG:cardG).getBoundingClientRect(),b=(inIntro?ipB:cardB).getBoundingClientRect();
+    const close=inIntro||(!document.body.classList.contains('locked')&&Math.abs(bias-.5)<.1);
+    nextBolt=t+(close?300:600)+Math.random()*(close?500:1000);
+    if(a.bottom>60&&a.top<H-60){const yy=a.top+a.height*(.15+Math.random()*.55),yy2=b.top+b.height*(.15+Math.random()*.55);
+      const ax=a.right-4,bx=b.left+4;bolts.push({pts:mkBolt(ax,yy,bx,yy2),born:t,ax,bx});
+      if(Math.random()<.5)bolts.push({pts:mkBolt(ax,yy+30,bx,yy2-20),born:t,ax,bx})}
+  }
+  for(let i=bolts.length-1;i>=0;i--){const b=bolts[i],age=(t-b.born)/260;if(age>=1){bolts.splice(i,1);continue}
+    drawBolt(b.pts,(1-age)*(Math.random()<.3?1:.75),b.ax,b.bx)}
+  cx.shadowBlur=0;
+  /* confetti */
+  cx.globalCompositeOperation='source-over';
+  for(let i=conf.length-1;i>=0;i--){const p=conf[i];p.x+=p.vx;p.y+=p.vy;p.vy+=.22;p.vx*=.992;p.rot+=p.vr;p.life-=p.dec;
+    if(p.life<=0||p.y>H+30){conf.splice(i,1);continue}
+    cx.save();cx.translate(p.x,p.y);cx.rotate(p.rot);cx.fillStyle=`rgba(${p.c},${Math.min(1,p.life*1.6)})`;cx.fillRect(-p.w/2,-p.h/2,p.w,p.h);cx.restore()}
+}
+requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
