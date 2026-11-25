@@ -162,6 +162,14 @@ body.locked .num,body.locked .pct{filter:blur(11px)}
 .club span{font-size:.8em;animation:float 1.8s ease-in-out infinite}
 .club span:last-child{animation-delay:.9s}
 body:has(#intro:not([hidden])){overflow:hidden}
+.chant{font-size:clamp(28px,8.4vw,64px);letter-spacing:.03em;white-space:nowrap}
+.chname{display:inline-block;--cr:25,230,140;color:rgb(var(--cr));text-shadow:0 0 26px rgba(var(--cr),1),0 0 4px rgba(var(--cr),1),0 0 60px rgba(var(--cr),.8)}
+.chname.chiang{--cr:61,139,255}
+.chname.hit{animation:chhit .55s cubic-bezier(.2,1.9,.4,1)}
+.bang{display:inline-block;color:#fff;text-shadow:0 0 22px rgba(255,255,255,.7);animation:bang .7s ease-in-out infinite alternate}
+@keyframes chhit{0%{transform:scale(2.3) rotate(-7deg);opacity:0;filter:blur(8px)}60%{transform:scale(.94) rotate(1deg);opacity:1;filter:none}100%{transform:none}}
+@keyframes bang{to{transform:scale(1.28) rotate(6deg)}}
+.ix-sub{font-weight:700;font-size:clamp(13px,3.6vw,20px);letter-spacing:.38em;margin-right:-.38em;color:#dfe4ff;opacity:.9;margin-top:2px}
 .ix-title{font-weight:900;font-size:clamp(26px,7vw,54px);line-height:1.15;margin-top:4px;letter-spacing:.04em;text-shadow:0 0 24px rgba(255,255,255,.35)}
 .ix-stage{position:relative;z-index:2;width:100%;max-width:920px;flex:1;min-height:0;display:flex;justify-content:space-between;align-items:center;gap:4px}
 .ix-side{--cr:25,230,140;--dir:1;flex:1;min-width:0;text-align:center;animation:inL 1s cubic-bezier(.2,1.2,.3,1) both}
@@ -235,7 +243,8 @@ body:has(#intro:not([hidden])){overflow:hidden}
   <div class="ix-bg"></div>
   <div class="ix-top">
     <div class="kicker">2026 · 台北市長世紀對決</div>
-    <h2 class="ix-title glitch" data-t="台北市長 預測大戰">台北市長 預測大戰</h2>
+    <h2 class="ix-title chant" aria-label="我們的市長">我們的市長 <span class="chname shen" id="chname">沈伯洋</span><span class="bang">！</span></h2>
+    <div class="ix-sub">台北市長 預測大戰</div>
   </div>
   <div class="ix-stage">
     <div class="ix-side shen">
@@ -294,6 +303,11 @@ const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 let bias=.5;
 const S={db:null,uid:null,name:'',voted:false,mine:null,readOnly:false,ready:false,busy:false,pick:null};
+
+/* ---------- 開場吶喊口號：我們的市長 ○○○！ ---------- */
+(()=>{const el=$('#chname');let i=1;const ks=['shen','chiang'];
+  const hit=()=>{const k=ks[i++%2];el.textContent=C[k].name;el.className='chname '+k;void el.offsetWidth;el.classList.add('hit')};
+  setInterval(()=>{if(!document.hidden)hit()},1500);})();
 
 /* ---------- avatars ---------- */
 function avatar(k,p){
