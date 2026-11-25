@@ -1,12 +1,12 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    // 選舉期間不公開結果：每個人（匿名登入的 uid）只能讀「自己那一張票」，
-    // 不能列出或讀取別人的票；只能新增自己的一票，投出後不能修改或刪除，並且只在截止時間前有效。
-    // 票數與名單只有主辦人能在 Firebase 後台（Firestore Database）查看。
+    // 選舉期間不公開結果：2026/11/28 16:30（台灣時間）之前，每個人只能讀「自己那一張票」，不能列出或讀取別人的票；
+    // 16:30（= 08:30 UTC = 午夜後 510 分鐘）之後才開放所有人讀取，用來公布票數與名單。
+    // 只能新增自己的一票，投出後不能修改或刪除，並且只在 15:59 之前有效。
     match /votes/{uid} {
-      allow get: if request.auth != null && request.auth.uid == uid;
-      allow list: if false;
+      allow get: if request.auth != null && (request.auth.uid == uid || request.time >= timestamp.date(2026, 11, 28) + duration.value(510, 'm'));
+      allow list: if request.auth != null && request.time >= timestamp.date(2026, 11, 28) + duration.value(510, 'm');
       allow create: if request.auth != null
         && request.auth.uid == uid
         && request.resource.data.keys().hasOnly(['name','choice','ts'])

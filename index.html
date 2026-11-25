@@ -93,12 +93,48 @@ body.locked .num,body.locked .pct{filter:blur(11px)}
 .btn.mine{background:#ffd24a;color:#2a1d00;opacity:1;filter:none}
 .hint{text-align:center;margin-top:14px;color:var(--gold);font-weight:700;font-size:14px;animation:blink 1.4s infinite}
 
+/* 公布結果 */
+.results[hidden]{display:none}
+.results{margin-top:26px;animation:popin .8s cubic-bezier(.3,1.5,.5,1)}
+.tugwrap{padding:16px 14px 14px;border-radius:20px;border:1px solid rgba(255,255,255,.12);background:rgba(10,12,26,.7);backdrop-filter:blur(8px)}
+.tuglabels{display:flex;justify-content:space-between;font-weight:900;font-size:clamp(15px,4vw,22px);margin-bottom:8px}
+.tuglabels .l{color:var(--g)}.tuglabels .r{color:var(--b)}
+.tuglabels b{font-family:Orbitron,sans-serif;font-size:1.25em}
+.pcts{display:flex;justify-content:space-between;font-family:Orbitron,sans-serif;font-weight:900;font-size:clamp(20px,6vw,38px);margin-bottom:10px}
+.pcts .l{color:var(--g);text-shadow:0 0 18px rgba(25,230,140,.8)}.pcts .r{color:var(--b);text-shadow:0 0 18px rgba(61,139,255,.8)}
+.tug{position:relative;height:34px;border-radius:99px;background:#0d1020;box-shadow:inset 0 0 0 2px rgba(255,255,255,.1)}
+.fill{position:absolute;top:0;height:100%;transition:width 1.6s cubic-bezier(.34,1.56,.64,1)}
+.fill.g{left:0;border-radius:99px 0 0 99px;width:50%;background:repeating-linear-gradient(115deg,rgba(255,255,255,.18) 0 10px,transparent 10px 20px),linear-gradient(90deg,#0a9a5c,#19e68c);background-size:40px 100%,100% 100%;animation:flow 1s linear infinite;box-shadow:0 0 24px rgba(25,230,140,.7)}
+.fill.b{right:0;border-radius:0 99px 99px 0;width:50%;background:repeating-linear-gradient(115deg,rgba(255,255,255,.18) 0 10px,transparent 10px 20px),linear-gradient(270deg,#1c4fd1,#3d8bff);background-size:40px 100%,100% 100%;animation:flowr 1s linear infinite;box-shadow:0 0 24px rgba(61,139,255,.7)}
+@keyframes flow{to{background-position:40px 0,0 0}}
+@keyframes flowr{to{background-position:-40px 0,0 0}}
+.lead{margin-top:14px;text-align:center;font-weight:900;font-size:clamp(16px,4.4vw,24px);color:#fff;text-shadow:0 0 14px rgba(255,255,255,.4)}
+.lead em{font-style:normal;font-family:Orbitron,sans-serif;color:var(--gold)}
+#board{margin-top:26px}
+.boardhead{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:10px}
+.boardhead h3{font-size:20px;font-weight:900}
+.boardhead span{color:var(--mut);font-size:13px}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.col{--cr:25,230,140;border-radius:18px;padding:12px 10px;background:rgba(10,12,26,.72);border:1px solid rgba(var(--cr),.4);backdrop-filter:blur(6px);min-width:0}
+.col.b{--cr:61,139,255}
+.col h4{font-size:clamp(13px,3.4vw,16px);font-weight:900;color:rgb(var(--cr));margin-bottom:8px;display:flex;justify-content:space-between;gap:6px}
+.col h4 em{font-style:normal;font-family:Orbitron,sans-serif}
+.col ul{list-style:none;display:flex;flex-direction:column;gap:6px;max-height:520px;overflow-y:auto;padding-right:2px}
+.col li{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:8px 10px;border-radius:10px;background:rgba(var(--cr),.12);border-left:3px solid rgb(var(--cr));font-size:14px;animation:pop .5s cubic-bezier(.3,1.6,.5,1)}
+.col li .nm{font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+.col li time{font-family:Orbitron,sans-serif;font-size:10px;color:var(--mut);flex:none}
+.col li.me{background:rgba(255,210,74,.2);border-left-color:var(--gold)}
+.col li.me .nm::after{content:" ★";color:var(--gold)}
+.col .empty{color:var(--mut);font-size:13px;text-align:center;padding:14px 0}
+@keyframes pop{from{opacity:0;transform:translateX(-14px) scale(.9)}}
+.bump{animation:bump .5s}
+@keyframes bump{40%{transform:scale(1.25)}}
 /* done panel */
-.donewrap{margin-top:26px;padding:22px 16px;border-radius:20px;text-align:center;border:1px solid rgba(255,210,74,.45);background:rgba(10,12,26,.75);backdrop-filter:blur(8px);box-shadow:0 0 50px -14px rgba(255,210,74,.6);animation:pop .6s cubic-bezier(.3,1.6,.5,1)}
+.donewrap{margin-top:26px;padding:22px 16px;border-radius:20px;text-align:center;border:1px solid rgba(255,210,74,.45);background:rgba(10,12,26,.75);backdrop-filter:blur(8px);box-shadow:0 0 50px -14px rgba(255,210,74,.6);animation:popin .6s cubic-bezier(.3,1.6,.5,1)}
 .donewrap[hidden]{display:none}
 .donemsg{font-weight:900;font-size:clamp(18px,5vw,28px);color:#fff;text-shadow:0 0 16px rgba(255,210,74,.5)}
 .donewrap p{margin-top:8px;color:var(--mut);font-size:13px;line-height:1.7}
-@keyframes pop{from{opacity:0;transform:translateY(16px) scale(.94)}}
+@keyframes popin{from{opacity:0;transform:translateY(16px) scale(.94)}}
 .foot{margin-top:34px;text-align:center;font-size:12px;color:var(--mut);line-height:1.8}
 
 /* overlays */
@@ -232,10 +268,27 @@ body:has(#intro:not([hidden])){overflow:hidden}
 
   <section class="donewrap" id="donewrap" hidden>
     <div class="donemsg" id="doneMsg"></div>
-    <p>基於選舉期間的考量，本頁不公開任何票數、比例或投票名單。</p>
+    <p>基於選舉期間的考量，投票結果與名單將於 11/28 下午 4:30 統一公布，在那之前本頁不顯示任何票數。</p>
   </section>
 
-  <div class="foot">投票截止時間：2026/11/28 下午 3:59（台灣時間）<br>這是朋友之間的非科學預測遊戲，不代表任何民調、選舉結果或機構立場。<br>每個瀏覽器限投一票。投票結果與名單不對外公開。</div>
+  <section class="results" id="results" hidden>
+    <div class="boardhead"><h3>🏆 最終預測結果</h3><span id="rtotal"></span></div>
+    <div class="tugwrap">
+      <div class="tuglabels"><span class="l">沈伯洋 <b id="nG">0</b> 票</span><span class="r"><b id="nB">0</b> 票 蔣萬安</span></div>
+      <div class="pcts"><span class="l" id="pG">0%</span><span class="r" id="pB">0%</span></div>
+      <div class="tug"><div class="fill g" id="fillG"></div><div class="fill b" id="fillB"></div></div>
+      <div class="lead" id="lead"></div>
+    </div>
+    <div id="board">
+      <div class="boardhead"><h3>🔥 預測名單</h3><span>最新的在最上面</span></div>
+      <div class="cols">
+        <div class="col g"><h4><span>預測 沈伯洋 當選</span><em id="cG">0</em></h4><ul id="listG"></ul></div>
+        <div class="col b"><h4><span>預測 蔣萬安 當選</span><em id="cB">0</em></h4><ul id="listB"></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="foot">投票截止時間：2026/11/28 下午 3:59（台灣時間）<br>這是朋友之間的非科學預測遊戲，不代表任何民調、選舉結果或機構立場。<br>每個瀏覽器限投一票。投票結果與名單將於 11/28 下午 4:30 公布。</div>
 </main>
 
 <!-- opening face-off + name -->
@@ -260,7 +313,7 @@ body:has(#intro:not([hidden])){overflow:hidden}
     </div>
   </div>
   <div class="ix-form">
-    <p>報上大名，加入這場預測對決 ⚔<br><span style="font-size:12px;color:#aab2d6;font-weight:500">投票結果與名單不對外公開</span></p>
+    <p>報上大名，加入這場預測對決 ⚔<br><span style="font-size:12px;color:#aab2d6;font-weight:500">結果與名單 11/28 下午 4:30 公布</span></p>
     <input id="nameIn" maxlength="12" placeholder="請輸入你的姓名" autocomplete="off" enterkeyhint="go">
     <div class="err" id="nameErr"></div>
     <button class="btn big" id="nameGo">進入戰場 ⚔</button>
@@ -290,7 +343,7 @@ body:has(#intro:not([hidden])){overflow:hidden}
 <script type="module">
 import {initializeApp} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import {getAuth,signInAnonymously} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-import {getFirestore,doc,getDoc,setDoc} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import {getFirestore,collection,doc,getDoc,setDoc,onSnapshot} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 import FB_CONFIG from "./firebase-config.js";
 (()=>{
 "use strict";
@@ -304,7 +357,8 @@ const PHOTO_CFG={shen:{fc:.55,flip:true},chiang:{fc:.52,flip:true}};
 const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 let bias=.5;
-const S={db:null,uid:null,name:'',voted:false,mine:null,readOnly:false,ready:false,busy:false,pick:null};
+const S={db:null,uid:null,name:'',voted:false,mine:null,readOnly:false,ready:false,busy:false,pick:null,
+  sub:false,subWait:false,votes:[],shown:{shen:0,chiang:0},shownResults:false,liveReveal:false};
 
 /* ---------- 開場吶喊口號：我們的市長 ○○○！ ---------- */
 (()=>{const el=$('#chname');let i=1;const ks=['shen','chiang'];
@@ -330,17 +384,25 @@ $('#ip-shen').innerHTML=avatar('shen','i');$('#ip-chiang').innerHTML=avatar('chi
 /* ---------- 截止時間（台灣時間）：要改日期只改這一行 ---------- */
 const DEADLINE=new Date('2026-11-28T15:59:00+08:00');
 const closed=()=>Date.now()>=DEADLINE.getTime();
+/* 公布時間（台灣時間）：到這個時間才顯示票數與名單。資料庫規則也有同一個時間，兩邊要一起改 */
+const REVEAL=new Date('2026-11-28T16:30:00+08:00');
+const revealed=()=>Date.now()>=REVEAL.getTime();
+S.liveReveal=!revealed();
 let wasClosed=closed();
 function tickCountdown(){
-  const box=$('#cdbox'),left=DEADLINE.getTime()-Date.now();
-  if(left<=0){box.classList.add('done');box.classList.remove('hot');$('#cdlabel').textContent='🏁 投票已截止（11/28 15:59）';}
+  const box=$('#cdbox'),now=Date.now();
+  if(now>=REVEAL.getTime()){box.classList.add('done');box.classList.remove('hot');$('#cdlabel').textContent='🎉 結果公布！';}
   else{
+    const target=now<DEADLINE.getTime()?DEADLINE.getTime():REVEAL.getTime(),left=target-now;
     const d=Math.floor(left/864e5),h=Math.floor(left%864e5/36e5),m=Math.floor(left%36e5/6e4),s=Math.floor(left%6e4/1e3),p=n=>String(n).padStart(2,'0');
     $('#cdD').textContent=d;$('#cdH').textContent=p(h);$('#cdM').textContent=p(m);$('#cdS').textContent=p(s);
-    $('#cdlabel').textContent=left<36e5?'🔥 最後一小時！投票即將截止':'⏳ 投票截止倒數（11/28 15:59）';
-    box.classList.toggle('hot',left<36e5);box.classList.remove('done');
+    let hot,label;
+    if(now<DEADLINE.getTime()){hot=left<36e5;label=hot?'🔥 最後一小時！投票即將截止':'⏳ 投票截止倒數（11/28 15:59）'}
+    else{hot=left<6e5;label='🏁 投票已截止・距離公布結果（16:30）'}
+    $('#cdlabel').textContent=label;box.classList.toggle('hot',hot);box.classList.remove('done');
   }
-  if(!wasClosed&&closed()){wasClosed=true;showNotice('投票時間到！預測已截止。');updateModal();render()}
+  if(!wasClosed&&closed()){wasClosed=true;showNotice('投票時間到！預測已截止，結果將於 16:30 公布。');updateModal();render()}
+  render();maybeReveal();
 }
 setInterval(tickCountdown,1000);
 
@@ -357,8 +419,62 @@ function render(){
   $('#arena').classList.toggle('armed',canVote());
   $('#hint').hidden=!canVote();
   if(S.voted&&S.name){const p=$('#mepill');p.hidden=false;p.textContent='👤 '+S.name}
-  const d=$('#donewrap');d.hidden=!(S.voted||closed());
-  $('#doneMsg').textContent=S.voted?'🔒 你預測 '+C[S.mine].name+' 當選，預測已鎖定':'🏁 投票已截止，感謝參與';
+  const d=$('#donewrap');d.hidden=!((S.voted||closed())&&!revealed());
+  $('#doneMsg').textContent=(S.voted?'🔒 你預測 '+C[S.mine].name+' 當選，預測已鎖定':'🏁 投票已截止，感謝參與');
+}
+
+/* ---------- 公布結果（16:30 之後） ---------- */
+const tw={};
+function tween(el,to,key,dur=1500){
+  const from=S.shown[key];if(from===to){el.textContent=to;return}
+  const id=(tw[key]=(tw[key]||0)+1),t0=performance.now();
+  el.parentNode.classList.remove('bump');void el.parentNode.offsetWidth;el.parentNode.classList.add('bump');
+  const step=n=>{if(tw[key]!==id)return;const q=Math.min(1,(n-t0)/dur),e=1-Math.pow(1-q,4),v=Math.round(from+(to-from)*e);el.textContent=v;S.shown[key]=v;if(q<1)requestAnimationFrame(step)};
+  requestAnimationFrame(step);
+  setTimeout(()=>{if(tw[key]===id){el.textContent=to;S.shown[key]=to}},dur+300);
+}
+function fillList(ul,arr){
+  ul.textContent='';
+  if(!arr.length){const e=document.createElement('div');e.className='empty';e.textContent='沒有人投給他';ul.appendChild(e);return}
+  arr.slice(0,500).forEach(v=>{
+    const li=document.createElement('li');if(v.id===S.uid)li.className='me';
+    const nm=document.createElement('span');nm.className='nm';nm.textContent=v.name;
+    const tm=document.createElement('time');tm.textContent=v.ts?new Date(v.ts).toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit',hour12:false}):'';
+    li.append(nm,tm);ul.appendChild(li);
+  });
+}
+function renderResults(){
+  const g=S.votes.filter(v=>v.choice==='shen'),b=S.votes.filter(v=>v.choice==='chiang'),total=S.votes.length;
+  const first=!S.shownResults;S.shownResults=true;
+  $('#results').hidden=false;$('#donewrap').hidden=true;$('#hint').hidden=true;
+  $('#rtotal').textContent='共 '+total+' 人參與';
+  tween($('#nG'),g.length,'shen');tween($('#nB'),b.length,'chiang');
+  const pg=total?g.length/total*100:50,pb=total?100-pg:50;
+  $('#pG').textContent=(total?pg:0).toFixed(1)+'%';$('#pB').textContent=(total?pb:0).toFixed(1)+'%';
+  $('#fillG').style.width=Math.min(96,Math.max(4,pg))+'%';$('#fillB').style.width=Math.min(96,Math.max(4,pb))+'%';
+  const diff=g.length-b.length,leader=diff>0?'shen':diff<0?'chiang':null,lead=$('#lead');lead.textContent='';
+  if(!total)lead.textContent='沒有人參與預測';
+  else if(!leader)lead.textContent='⚔ 雙方平手！';
+  else{lead.append('🏆 '+C[leader].name+' 獲得較多人支持，領先 ');const em=document.createElement('em');em.textContent=Math.abs(diff);lead.append(em,' 票')}
+  bias=total?Math.min(.85,Math.max(.15,pg/100)):.5;
+  fillList($('#listG'),g);fillList($('#listB'),b);$('#cG').textContent=g.length;$('#cB').textContent=b.length;
+  if(first){
+    if(leader){boomFx(C[leader].cr,true);setTimeout(()=>boomFx(C[leader].cr,false),500)}
+    if(S.liveReveal){document.body.classList.add('shake');setTimeout(()=>document.body.classList.remove('shake'),700);
+      setTimeout(()=>$('#results').scrollIntoView({behavior:'smooth',block:'start'}),300)}
+  }
+}
+function onSnap(snap){
+  const arr=[];
+  snap.docs.forEach(d=>{const x=d.data()||{};if(x.choice!=='shen'&&x.choice!=='chiang')return;
+    arr.push({id:d.id,name:String(x.name||'匿名').slice(0,16),choice:x.choice,ts:Number(x.ts)||0})});
+  arr.sort((a,b)=>b.ts-a.ts);S.votes=arr;renderResults();
+}
+function maybeReveal(){
+  if(!revealed()||!S.db||S.sub||S.subWait)return;
+  S.sub=true;
+  S.db.listen(onSnap,e=>{S.sub=false;S.subWait=true;setTimeout(()=>{S.subWait=false},10000);
+    if(!(e&&e.code==='permission-denied'))showNotice('結果暫時讀取失敗（'+(e&&e.code||'error')+'），稍後自動重試')});
 }
 
 /* ---------- flow ---------- */
@@ -427,14 +543,14 @@ async function init(){
   try{
     const app=initializeApp(FB_CONFIG),auth=getAuth(app),fs=getFirestore(app);
     const cred=await signInAnonymously(auth);S.uid=cred.user.uid;
-    S.db={doc:id=>{const r=doc(fs,'votes',id);return{get:async()=>{const x=await getDoc(r);return{exists:x.exists(),data:x.data()}},set:d=>setDoc(r,d)}}};
+    S.db={listen:(next,err)=>onSnapshot(collection(fs,'votes'),next,err),doc:id=>{const r=doc(fs,'votes',id);return{get:async()=>{const x=await getDoc(r);return{exists:x.exists(),data:x.data()}},set:d=>setDoc(r,d)}}};
   }catch(e){S.ready=true;showNotice('無法連線到投票資料庫（'+(e&&e.code||'error')+'），請稍後重新整理。');render();return}
   /* 只讀取「自己」的那一張票，用來判斷是否已投過；其他人的票讀不到 */
   try{
     const ex=await S.db.doc(S.uid).get();
     if(ex.exists){const x=ex.data||{};if(x.choice==='shen'||x.choice==='chiang'){S.voted=true;S.mine=x.choice;S.name=String(x.name||'').slice(0,12)}}
   }catch(e){showNotice('暫時無法確認投票狀態（'+(e&&e.code||'error')+'），請稍後重新整理。')}
-  S.ready=true;updateModal();render();
+  S.ready=true;updateModal();render();maybeReveal();
 }
 init();
 
